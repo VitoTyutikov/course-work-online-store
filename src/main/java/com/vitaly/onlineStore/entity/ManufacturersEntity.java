@@ -1,18 +1,17 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "manufacrurers", schema = "online_shop", catalog = "online_shop")
-@Data
+@Table(name = "manufacturers", schema = "online_shop", catalog = "online_shop")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ManufacrurersEntity {
+public class ManufacturersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "manufacturer_id", nullable = false)
@@ -20,7 +19,7 @@ public class ManufacrurersEntity {
     @Basic
     @Column(name = "manufacturer_name", nullable = false)
     private String manufacturerName;
-    @OneToMany(mappedBy = "manufacrurersByManufacturerId")
-    private List<ProductsEntity> productsByManufacturerId;
+//    @OneToMany(mappedBy = "manufacturersByManufacturerId")
+//    private List<ProductsEntity> productsByManufacturerId;
 
 }

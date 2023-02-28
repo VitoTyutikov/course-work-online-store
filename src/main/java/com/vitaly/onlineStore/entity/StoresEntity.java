@@ -1,9 +1,7 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +9,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "stores", schema = "online_shop", catalog = "online_shop")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class StoresEntity {
@@ -22,8 +21,8 @@ public class StoresEntity {
     @Basic
     @Column(name = "store_name", nullable = false, length = 60)
     private String storeName;
-    @OneToMany(mappedBy = "storesByStoreId")
-    private List<DeliveriesEntity> deliveriesByStoreId;
-    @OneToMany(mappedBy = "storesByStoreId")
-    private List<OrdersEntity> ordersByStoreId;
+//    @OneToMany(mappedBy = "storesByStoreId")
+//    private List<DeliveriesEntity> deliveriesByStoreId;
+//    @OneToMany(mappedBy = "storesByStoreId")
+//    private List<OrdersEntity> ordersByStoreId;
 }

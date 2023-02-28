@@ -1,18 +1,17 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "clients", schema = "online_shop", catalog = "online_shop")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class ClientsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

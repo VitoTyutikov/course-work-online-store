@@ -1,9 +1,9 @@
 package com.vitaly.onlineStore.service;
 
-import com.vitaly.onlineStore.entity.CategoriesEntity;
 import com.vitaly.onlineStore.entity.ProductsEntity;
 import com.vitaly.onlineStore.repository.ProductsRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,8 +18,8 @@ public class ProductsService {
     public List<ProductsEntity> getAll(){
         return  productsRepository.findAll();
     }
-    public Optional<ProductsEntity> getById(Integer id){
-        return productsRepository.findById(id);
+    public ProductsEntity getById(Integer id){
+        return productsRepository.findById(id).orElseThrow();//can use Optional<ProductsEntity> instead ProductsEntity
     }
 
     public Integer save(ProductsEntity category){

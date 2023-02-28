@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderItemsPK implements Serializable {
     private Integer orderId;
     private Integer productId;

@@ -1,18 +1,17 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "categories", schema = "online_shop", catalog = "online_shop")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class CategoriesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -21,6 +20,6 @@ public class CategoriesEntity {
     @Basic
     @Column(name = "category_name", nullable = false)
     private String categoryName;
-    @OneToMany(mappedBy = "categoriesByCategoryId")
-    private List<ProductsEntity> productsByCategoryId;
+//    @OneToMany(mappedBy = "categoriesByCategoryId")
+//    private List<ProductsEntity> productsByCategoryId;
 }

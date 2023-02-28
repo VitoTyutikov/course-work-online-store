@@ -1,15 +1,14 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "products", schema = "online_shop", catalog = "online_shop")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductsEntity {
@@ -35,13 +34,13 @@ public class ProductsEntity {
     @Basic
     @Column(name = "product_image")
     private String productImage;
-    @OneToMany(mappedBy = "productsByProductId")
-    private List<DeliveriesEntity> deliveriesByProductId;
-    @OneToMany(mappedBy = "productsByProductId")
-    private List<OrderItemsEntity> orderItemsByProductId;
+//    @OneToMany(mappedBy = "productsByProductId")
+//    private List<DeliveriesEntity> deliveriesByProductId;
+//    @OneToMany(mappedBy = "productsByProductId")
+//    private List<OrderItemsEntity> orderItemsByProductId;
     @ManyToOne
     @JoinColumn(name = "manufacturer_id", referencedColumnName = "manufacturer_id", insertable = false, updatable = false)
-    private ManufacrurersEntity manufacrurersByManufacturerId;
+    private ManufacturersEntity manufacturersByManufacturerId;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id", insertable = false, updatable = false)
     private CategoriesEntity categoriesByCategoryId;

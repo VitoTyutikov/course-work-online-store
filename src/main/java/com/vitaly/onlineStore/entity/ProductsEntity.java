@@ -34,7 +34,7 @@ public class ProductsEntity {
     @Basic
     @Column(name = "product_image")
     private String productImage;
-//    @OneToMany(mappedBy = "productsByProductId")
+    //    @OneToMany(mappedBy = "productsByProductId")
 //    private List<DeliveriesEntity> deliveriesByProductId;
 //    @OneToMany(mappedBy = "productsByProductId")
 //    private List<OrderItemsEntity> orderItemsByProductId;

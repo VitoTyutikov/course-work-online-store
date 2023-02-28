@@ -28,9 +28,13 @@ public class OrderItemsEntity {
     @Column(name = "product_price", nullable = false, precision = 2)
     private Double productPrice;
     @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false,insertable=false, updatable=false)
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false, insertable = false, updatable = false)
     private OrdersEntity ordersByOrderId;
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false,insertable=false, updatable=false)
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false, insertable = false, updatable = false)
     private ProductsEntity productsByProductId;
+
+    public OrderItemsPK getId(){
+        return new OrderItemsPK(this.orderId, this.productId);
+    }
 }

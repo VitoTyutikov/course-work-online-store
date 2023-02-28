@@ -28,10 +28,16 @@ public class DeliveriesEntity {
     @Column(name = "products_count", nullable = false)
     private Integer productsCount;
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false,insertable=false, updatable=false)
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false, insertable = false, updatable = false)
     private ProductsEntity productsByProductId;
     @ManyToOne
-    @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false,insertable=false, updatable=false)
+    @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false, insertable = false, updatable = false)
     private StoresEntity storesByStoreId;
 
+    public DeliveriesPK getId() {
+        DeliveriesPK deliveriesPK = new DeliveriesPK();
+        deliveriesPK.setDeliveryDate(this.deliveryDate);
+        deliveriesPK.setProductId(this.productId);
+        return deliveriesPK;
+    }
 }

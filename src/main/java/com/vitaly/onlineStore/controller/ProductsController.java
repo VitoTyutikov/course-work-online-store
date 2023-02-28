@@ -23,11 +23,16 @@ public class ProductsController {
     @GetMapping("/all")
     public List<ProductsEntity> getAll() {
 //        return productsService.getAll() == null ? productsService.getAll() : null;
-        return productsService.getAll();
+        return productsService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ProductsEntity getById(@PathVariable Integer id){
+    public ProductsEntity getById(@PathVariable Integer id) {
         return productsService.getById(id);
+    }
+
+    @GetMapping("/delete/{id}")
+    public void deleteById(@PathVariable Integer id) {
+        productsService.deleteById(id);
     }
 }

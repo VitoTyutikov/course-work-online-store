@@ -15,18 +15,21 @@ public class ProductsService {
     public ProductsService(ProductsRepository productsRepository) {
         this.productsRepository = productsRepository;
     }
-    public List<ProductsEntity> getAll(){
-        return  productsRepository.findAll();
+
+    public List<ProductsEntity> findAll() {
+        return productsRepository.findAll();
     }
-    public ProductsEntity getById(Integer id){
+
+    public ProductsEntity getById(Integer id) {
         return productsRepository.findById(id).orElseThrow();//can use Optional<ProductsEntity> instead ProductsEntity
     }
 
-    public Integer save(ProductsEntity category){
+    public Integer save(ProductsEntity category) {
         productsRepository.save(category);
         return category.getCategoryId();
     }
-    public void deleteById(Integer id){
+
+    public void deleteById(Integer id) {
         productsRepository.deleteById(id);
     }
 }

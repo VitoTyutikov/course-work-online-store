@@ -3,10 +3,7 @@ package com.vitaly.onlineStore.controller;
 import com.vitaly.onlineStore.entity.ProductsEntity;
 import com.vitaly.onlineStore.service.ProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class ProductsController {
     public ProductsController(ProductsService productsService) {
         this.productsService = productsService;
     }
-
+//    @CrossOrigin
     @GetMapping("/all")
     public List<ProductsEntity> getAll() {
 //        return productsService.getAll() == null ? productsService.getAll() : null;
@@ -31,8 +28,14 @@ public class ProductsController {
         return productsService.getById(id);
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Integer id) {
         productsService.deleteById(id);
     }
+
+    @PostMapping("/add")
+    public ProductsEntity newProduct(@RequestBody ProductsEntity newProductsEntity) {
+        return productsService.save(newProductsEntity);
+    }
+
 }

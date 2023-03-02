@@ -5,7 +5,6 @@ import com.vitaly.onlineStore.repository.ClientsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClientsService {
@@ -14,17 +13,21 @@ public class ClientsService {
     public ClientsService(ClientsRepository clientsRepository) {
         this.clientsRepository = clientsRepository;
     }
-    public List<ClientsEntity> findAll(){
+
+    public List<ClientsEntity> findAll() {
         return clientsRepository.findAll();
     }
-    public ClientsEntity findById(Integer id){
+
+    public ClientsEntity findById(Integer id) {
         return clientsRepository.findById(id).orElseThrow();
     }
-    public Integer save(ClientsEntity clientsEntity){
+
+    public Integer save(ClientsEntity clientsEntity) {
         clientsRepository.save(clientsEntity);
         return clientsEntity.getClientId();
     }
-    public void deleteById(Integer id){
+
+    public void deleteById(Integer id) {
         clientsRepository.deleteById(id);
     }
 }

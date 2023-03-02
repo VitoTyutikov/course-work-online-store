@@ -1,9 +1,11 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -41,6 +43,10 @@ public class ClientsEntity {
     @Basic
     @Column(name = "client_address")
     private String clientAddress;
+
+    @Basic
+    @Column(name = "user_role", nullable = false)
+    private String userRole;
     @OneToMany(mappedBy = "clientsByClientId")
     private List<OrdersEntity> ordersByClientId;
 }

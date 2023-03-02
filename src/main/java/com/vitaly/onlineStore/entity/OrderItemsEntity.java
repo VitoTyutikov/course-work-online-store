@@ -1,9 +1,10 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "order_items", schema = "online_shop", catalog = "online_shop")
@@ -34,7 +35,7 @@ public class OrderItemsEntity {
     @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false, insertable = false, updatable = false)
     private ProductsEntity productsByProductId;
 
-    public OrderItemsPK getId(){
+    public OrderItemsPK getId() {
         return new OrderItemsPK(this.orderId, this.productId);
     }
 }

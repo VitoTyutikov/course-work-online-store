@@ -1,10 +1,10 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.Collection;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
@@ -21,6 +21,10 @@ public class StoresEntity {
     @Basic
     @Column(name = "store_name", nullable = false, length = 60)
     private String storeName;
+
+    @Basic
+    @Column(name = "store_address")
+    private String storeAddress;
 //    @OneToMany(mappedBy = "storesByStoreId")
 //    private List<DeliveriesEntity> deliveriesByStoreId;
 //    @OneToMany(mappedBy = "storesByStoreId")

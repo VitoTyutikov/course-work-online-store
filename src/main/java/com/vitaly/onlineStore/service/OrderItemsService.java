@@ -17,17 +17,20 @@ public class OrderItemsService {
         this.orderItemsRepository = orderItemsRepository;
     }
 
-    public List<OrderItemsEntity> findAll(){
+    public List<OrderItemsEntity> findAll() {
         return orderItemsRepository.findAll();
     }
-    public OrderItemsEntity findById(OrderItemsPK id){
+
+    public OrderItemsEntity findById(OrderItemsPK id) {
         return orderItemsRepository.findById(id).orElseThrow();
     }
-    public OrderItemsPK save(OrderItemsEntity orderItemsEntity){
+
+    public OrderItemsPK save(OrderItemsEntity orderItemsEntity) {
         orderItemsRepository.save(orderItemsEntity);
         return orderItemsEntity.getId();
     }
-    public void deleteById(OrderItemsPK id){
+
+    public void deleteById(OrderItemsPK id) {
         orderItemsRepository.deleteById(id);
     }
 }

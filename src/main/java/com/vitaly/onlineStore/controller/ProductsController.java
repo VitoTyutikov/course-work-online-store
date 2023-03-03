@@ -16,7 +16,8 @@ public class ProductsController {
     public ProductsController(ProductsService productsService) {
         this.productsService = productsService;
     }
-//    @CrossOrigin
+
+    //    @CrossOrigin
     @GetMapping("/all")
     public List<ProductsEntity> getAll() {
 //        return productsService.getAll() == null ? productsService.getAll() : null;
@@ -37,5 +38,6 @@ public class ProductsController {
     public ProductsEntity newProduct(@RequestBody ProductsEntity newProductsEntity) {
         return productsService.save(newProductsEntity);
     }
+
 
 }

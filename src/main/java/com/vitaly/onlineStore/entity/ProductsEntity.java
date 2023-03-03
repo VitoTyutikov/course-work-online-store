@@ -38,7 +38,7 @@ public class ProductsEntity {
 
     @Basic
     @Column(name = "product_rating")
-    private String productRating;
+    private Double productRating;
 
     @Basic
     @Column(name = "product_discount")

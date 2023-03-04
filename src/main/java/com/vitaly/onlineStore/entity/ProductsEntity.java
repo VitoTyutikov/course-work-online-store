@@ -1,9 +1,10 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "products", schema = "online_shop", catalog = "online_shop")
@@ -34,7 +35,20 @@ public class ProductsEntity {
     @Basic
     @Column(name = "product_image")
     private String productImage;
-//    @OneToMany(mappedBy = "productsByProductId")
+
+    @Basic
+    @Column(name = "product_rating")
+    private Double productRating;
+
+    @Basic
+    @Column(name = "product_discount")
+    private Integer productDiscount;
+
+    @Basic
+    @Column(name = "product_is_active")
+    private Integer productIsActive;
+
+    //    @OneToMany(mappedBy = "productsByProductId")
 //    private List<DeliveriesEntity> deliveriesByProductId;
 //    @OneToMany(mappedBy = "productsByProductId")
 //    private List<OrderItemsEntity> orderItemsByProductId;

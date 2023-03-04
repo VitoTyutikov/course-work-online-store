@@ -1,12 +1,12 @@
 package com.vitaly.onlineStore.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "orders", schema = "online_shop", catalog = "online_shop")
@@ -28,13 +28,19 @@ public class OrdersEntity {
     @Basic
     @Column(name = "order_date", nullable = false)
     private LocalDate orderDate;
-//    @OneToMany(mappedBy = "ordersByOrderId")
+
+    @Basic
+    @Column(name = "order_status", nullable = false)
+    private String orderStatus;
+
+
+    //    @OneToMany(mappedBy = "ordersByOrderId")
 //    private List<OrderItemsEntity> orderItemsByOrderId;
     @ManyToOne
-    @JoinColumn(name = "client_id", referencedColumnName = "client_id", nullable = false,insertable=false, updatable=false)
+    @JoinColumn(name = "client_id", referencedColumnName = "client_id", nullable = false, insertable = false, updatable = false)
     private ClientsEntity clientsByClientId;
     @ManyToOne
-    @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false,insertable=false, updatable=false)
+    @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false, insertable = false, updatable = false)
     private StoresEntity storesByStoreId;
 
 }

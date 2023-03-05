@@ -30,10 +30,10 @@ public class DeliveriesEntity {
     @Basic
     @Column(name = "products_count", nullable = false)
     private Integer productsCount;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false, insertable = false, updatable = false)
     private ProductsEntity productsByProductId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false, insertable = false, updatable = false)
     private StoresEntity storesByStoreId;
 

@@ -2,14 +2,15 @@ package com.vitaly.onlineStore.controller;
 
 import com.vitaly.onlineStore.entity.ProductsEntity;
 import com.vitaly.onlineStore.service.ProductsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
-public class ProductsController {
+public class ProductsController implements Serializable {
     private final ProductsService productsService;
 
     public ProductsController(ProductsService productsService) {
@@ -21,7 +22,7 @@ public class ProductsController {
     @GetMapping({"", "/"})
     public List<ProductsEntity> getProducts(
             @RequestParam(name = "productName", required = false) String productName,
-            @RequestParam(name = "priceFrom", required = false, defaultValue = "0") Double priceFrom,
+            @RequestParam(name = "priceFrom", required = false) Double priceFrom,
             @RequestParam(name = "priceTo", required = false) Double priceTo,
             @RequestParam(name = "categoryName", required = false) List<String> categoryName,
             @RequestParam(name = "manufacturersName", required = false) List<String> manufacturersName) {
@@ -52,7 +53,7 @@ public class ProductsController {
             result.retainAll(productsByCategory);
         }
 
-        // Filter by manufacturer name
+//         Filter by manufacturer name
         if (manufacturersName != null && !manufacturersName.isEmpty()) {
             List<ProductsEntity> productsByManufacturer = new ArrayList<>();
             for (String manufacturer : manufacturersName) {
@@ -88,7 +89,7 @@ public class ProductsController {
     }
 
 
-    @DeleteMapping("/delete/{id}")
+    @RequestMapping(value = "/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public void deleteById(@PathVariable Integer id) {
         productsService.deleteById(id);
     }
@@ -97,7 +98,5 @@ public class ProductsController {
     public ProductsEntity newProduct(@RequestBody ProductsEntity newProductsEntity) {
         return productsService.save(newProductsEntity);
     }
-
-
 
 }

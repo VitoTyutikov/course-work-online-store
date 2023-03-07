@@ -29,7 +29,5 @@ public interface ProductsRepository extends JpaRepository<ProductsEntity, Intege
 
     @Query("SELECT p FROM ProductsEntity p JOIN p.categoriesByCategoryId c WHERE UPPER(c.categoryName) = UPPER(:categoryName)")
     List<ProductsEntity> findByCategoryName(@Param("categoryName") String categoryName);
-//    @Query(value = "SELECT * from p"
-//    List<ProductsEntity> findByManufacturerName(String manufacturerName);
 
 }

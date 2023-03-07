@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
 @Table(name = "clients", schema = "online_shop", catalog = "online_shop")
 @AllArgsConstructor
@@ -47,6 +45,4 @@ public class ClientsEntity {
     @Basic
     @Column(name = "user_role", nullable = false)
     private String userRole;
-    @OneToMany(mappedBy = "clientsByClientId")
-    private List<OrdersEntity> ordersByClientId;
 }

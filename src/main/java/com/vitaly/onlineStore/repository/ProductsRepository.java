@@ -2,6 +2,8 @@ package com.vitaly.onlineStore.repository;
 
 import com.vitaly.onlineStore.entity.ProductsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,12 +12,22 @@ import java.util.List;
 public interface ProductsRepository extends JpaRepository<ProductsEntity, Integer> {
 
 
-    List<ProductsEntity> findByProductNameLike(String productName);
+    List<ProductsEntity> findByProductNameStartsWithIgnoreCase(String productName);
 
-    List<ProductsEntity> findByProductPriceBetween(Double price1, Double price2);
+    List<ProductsEntity> findByProductPriceBetween(Double priceFrom, Double priceTo);
+
+    List<ProductsEntity> findByProductPriceGreaterThanEqual(Double priceFrom);
+
+    List<ProductsEntity> findByProductPriceLessThanEqual(Double priceTo);
 
     List<ProductsEntity> findByManufacturerId(Integer manufacturerId);
 
     List<ProductsEntity> findByCategoryId(Integer categoryId);
+
+    @Query("SELECT p FROM ProductsEntity p JOIN p.manufacturersByManufacturerId m WHERE UPPER(m.manufacturerName) = UPPER(:manufacturerName)")
+    List<ProductsEntity> findByManufacturerName(@Param("manufacturerName") String manufacturerName);
+
+    @Query("SELECT p FROM ProductsEntity p JOIN p.categoriesByCategoryId c WHERE UPPER(c.categoryName) = UPPER(:categoryName)")
+    List<ProductsEntity> findByCategoryName(@Param("categoryName") String categoryName);
 
 }

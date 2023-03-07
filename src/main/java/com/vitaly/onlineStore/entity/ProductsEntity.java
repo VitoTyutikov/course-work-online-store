@@ -58,4 +58,8 @@ public class ProductsEntity {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id", insertable = false, updatable = false)
     private CategoriesEntity categoriesByCategoryId;
+
+    public String getManufacturerName() {
+        return manufacturersByManufacturerId.getManufacturerName();
+    }
 }

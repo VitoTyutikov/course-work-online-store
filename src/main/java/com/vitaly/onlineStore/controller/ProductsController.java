@@ -63,29 +63,6 @@ public class ProductsController implements Serializable {
         }
 
         return result;
-
-        /*List<ProductsEntity> result = new ArrayList<>();
-        System.out.println("Product name = " + productName);
-        if (productName != null) {
-            result.addAll(productsService.findByProductNameStartsWithIgnoreCase(productName));
-        }
-        if (priceFrom != null) {
-            result.removeAll(productsService.findByProductPriceLessThanEqual(priceFrom));
-        }
-        if (priceTo != null) {
-            result.removeAll(productsService.findByProductPriceGreaterThanEqual(priceTo));
-        }
-        if (categoryName != null) {
-            for(String s : categoryName){
-                result.addAll(productsService.findByManufacturerName(s));
-            }
-        }
-        if (manufacturersName != null) {
-            for(String s : manufacturersName){
-                result.addAll(productsService.findByManufacturerName(s));
-            }
-        }
-        return result;*/
     }
 
 
@@ -94,7 +71,7 @@ public class ProductsController implements Serializable {
         productsService.deleteById(id);
     }
 
-    @PostMapping("/add")
+    @RequestMapping(value = "/add",method = {RequestMethod.POST, RequestMethod.GET})
     public ProductsEntity newProduct(@RequestBody ProductsEntity newProductsEntity) {
         return productsService.save(newProductsEntity);
     }

@@ -39,13 +39,13 @@ public class ClientsService {
 
 
     public Optional<ClientsEntity> findByClientLogin(String clientLogin){
+        System.out.println(clientLogin);
         return clientsRepository.findByClientLogin(clientLogin);
     }
     public String registerNewUser(@RequestBody ClientsDTO clientsDTO){
         ClientsEntity client = new ClientsEntity();
         if(clientsRepository.findByClientLogin(clientsDTO.getClientLogin()).isPresent())
             return "User With this login exists";
-        client.setUserRole("ROLE_USER");
         client.setClientLogin(clientsDTO.getClientLogin());
         client.setClientFname(clientsDTO.getClientFname());
         client.setClientLname(clientsDTO.getClientLname());
@@ -54,6 +54,7 @@ public class ClientsService {
         client.setClientIndex(clientsDTO.getClientIndex());
         client.setClientCity(clientsDTO.getClientCity());
         client.setClientAddress(clientsDTO.getClientAddress());
+        client.setUserRole(clientsDTO.getUserRole());
         clientsRepository.save(client);
         return "S";//TODO change it
     }

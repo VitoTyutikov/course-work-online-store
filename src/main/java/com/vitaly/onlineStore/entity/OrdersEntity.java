@@ -36,10 +36,10 @@ public class OrdersEntity {
 
     //    @OneToMany(mappedBy = "ordersByOrderId")
 //    private List<OrderItemsEntity> orderItemsByOrderId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", referencedColumnName = "client_id", nullable = false, insertable = false, updatable = false)
     private ClientsEntity clientsByClientId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false, insertable = false, updatable = false)
     private StoresEntity storesByStoreId;
 

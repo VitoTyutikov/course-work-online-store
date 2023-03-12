@@ -52,10 +52,10 @@ public class ProductsEntity {
 //    private List<DeliveriesEntity> deliveriesByProductId;
 //    @OneToMany(mappedBy = "productsByProductId")
 //    private List<OrderItemsEntity> orderItemsByProductId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manufacturer_id", referencedColumnName = "manufacturer_id", insertable = false, updatable = false)
     private ManufacturersEntity manufacturersByManufacturerId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "category_id", insertable = false, updatable = false)
     private CategoriesEntity categoriesByCategoryId;
 

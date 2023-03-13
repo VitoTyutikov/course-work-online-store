@@ -2,10 +2,10 @@ package com.vitaly.onlineStore.controller;
 
 import com.vitaly.onlineStore.dto.ClientsDTO;
 import com.vitaly.onlineStore.entity.ClientsEntity;
+import com.vitaly.onlineStore.entity.OrdersEntity;
 import com.vitaly.onlineStore.service.ClientsService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class ClientsController {
     private final ClientsService clientsService;
 
 
-    public ClientsController(ClientsService clientsService, PasswordEncoder passwordEncoder) {
+    public ClientsController(ClientsService clientsService) {
         this.clientsService = clientsService;
     }
 
@@ -47,6 +47,5 @@ public class ClientsController {
     public void deleteById(@PathVariable Integer id) {
         clientsService.deleteById(id);
     }
-
 
 }

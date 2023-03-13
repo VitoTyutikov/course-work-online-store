@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("products")
 public class ProductsController implements Serializable {
     private final ProductsService productsService;
 
@@ -17,9 +17,7 @@ public class ProductsController implements Serializable {
         this.productsService = productsService;
     }
 
-    //    @RequestParam(name = "discount", required = false) Integer discount
-    //
-    @GetMapping({"", "/"})
+    @GetMapping
     public List<ProductsEntity> getProducts(
             @RequestParam(name = "productName", required = false) String productName,
             @RequestParam(name = "priceFrom", required = false) Double priceFrom,
@@ -66,12 +64,12 @@ public class ProductsController implements Serializable {
     }
 
 
-    @RequestMapping(value = "/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @RequestMapping(value = "delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public void deleteById(@PathVariable Integer id) {
         productsService.deleteById(id);
     }
 
-    @RequestMapping(value = "/add",method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "add",method = {RequestMethod.POST, RequestMethod.GET})
     public ProductsEntity newProduct(@RequestBody ProductsEntity newProductsEntity) {
         return productsService.save(newProductsEntity);
     }

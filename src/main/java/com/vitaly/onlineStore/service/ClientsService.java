@@ -2,7 +2,6 @@ package com.vitaly.onlineStore.service;
 
 import com.vitaly.onlineStore.dto.ClientsDTO;
 import com.vitaly.onlineStore.entity.ClientsEntity;
-import com.vitaly.onlineStore.entity.OrdersEntity;
 import com.vitaly.onlineStore.repository.ClientsRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -61,8 +60,8 @@ public class ClientsService {
         return "S";//TODO change it
     }
 
-    public Integer findClientIdByClientLogin(String clientLogin){
-        return clientsRepository.findClientIdByClientLogin(clientLogin);
+    public  Optional<ClientsEntity> findClientIdByClientLogin(String clientLogin){
+        return clientsRepository.findClientByClientLogin(clientLogin);
     }
 
 

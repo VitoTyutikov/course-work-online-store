@@ -14,7 +14,7 @@
     <name>onlineStore</name>
     <description>Course project online store</description>
     <properties>
-        <java.version>19</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>

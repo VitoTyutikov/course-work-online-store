@@ -18,7 +18,7 @@ public class ClientsEntity {
     @Column(name = "client_id", nullable = false)
     private Integer clientId;
     @Basic
-    @Column(name = "client_fname", nullable = false)
+    @Column(name = "client_fname", nullable = false, unique = true)
     private String clientFname;
     @Basic
     @Column(name = "client_lname", nullable = false)

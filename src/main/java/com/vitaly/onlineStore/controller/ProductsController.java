@@ -2,6 +2,7 @@ package com.vitaly.onlineStore.controller;
 
 import com.vitaly.onlineStore.entity.ProductsEntity;
 import com.vitaly.onlineStore.service.ProductsService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -69,7 +70,7 @@ public class ProductsController implements Serializable {
         productsService.deleteById(id);
     }
 
-    @RequestMapping(value = "add",method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "add", method = {RequestMethod.POST, RequestMethod.GET})
     public ProductsEntity newProduct(@RequestBody ProductsEntity newProductsEntity) {
         return productsService.save(newProductsEntity);
     }

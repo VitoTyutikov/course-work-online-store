@@ -26,10 +26,10 @@ public class SecurityConfiguration {
         //TODO add lists with urls for every role
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers( "/products","/user/registration").permitAll()
+                .requestMatchers( "/products","/user/registration", "/**").permitAll()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/products/delete", "/products/delete/**", "/products/add", "/products/add/**","/user/**", "/orders/**", "/orders")
+                .requestMatchers("/products/delete", "/products/delete/**", "/products/add", "/products/add/**","/user/**", "/orders/**", "/orders","/**/*.html","/**/*.js")
                 .permitAll()
 //                .hasAnyRole("ADMIN", "MANUFACTURER", "CLIENT")
                 .and()

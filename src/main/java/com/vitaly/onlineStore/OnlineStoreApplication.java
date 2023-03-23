@@ -10,8 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class OnlineStoreApplication {
-    @Autowired
-    private ClientsService clientsService;
+//    @Autowired
+//    private ClientsService clientsService;
 //    @Autowired
 //    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 

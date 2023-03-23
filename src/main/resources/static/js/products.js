@@ -1,6 +1,6 @@
 productTable = document.getElementById('products-table')
 
-productUrl = "http://localhost:8080/products"
+productUrl = "http://localhost:8080/products-rest"
 fetch(productUrl)
     .then((response) => {
         if (!response.ok)

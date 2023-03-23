@@ -1,4 +1,4 @@
-package com.vitaly.onlineStore.controller;
+package com.vitaly.onlineStore.restController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

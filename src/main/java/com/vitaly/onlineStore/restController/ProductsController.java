@@ -1,8 +1,7 @@
-package com.vitaly.onlineStore.controller;
+package com.vitaly.onlineStore.restController;
 
 import com.vitaly.onlineStore.entity.ProductsEntity;
 import com.vitaly.onlineStore.service.ProductsService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("products")
+@RequestMapping("products-rest")
 public class ProductsController implements Serializable {
     private final ProductsService productsService;
 

@@ -1,8 +1,7 @@
-package com.vitaly.onlineStore.controller;
+package com.vitaly.onlineStore.restController;
 
 import com.vitaly.onlineStore.dto.ClientsDTO;
 import com.vitaly.onlineStore.entity.ClientsEntity;
-import com.vitaly.onlineStore.entity.OrdersEntity;
 import com.vitaly.onlineStore.service.ClientsService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("rest-user")
 public class ClientsController {
     private final ClientsService clientsService;
 
@@ -31,15 +30,16 @@ public class ClientsController {
         return clientsService.registerNewUser(clientsDTO);
     }
 
-    @GetMapping
+    @RequestMapping(value = "/all", method = {RequestMethod.GET})
     public List<ClientsEntity> findAll() {
         return clientsService.findAll();
     }
 
 
-    @RequestMapping(value = "/info", method = {RequestMethod.GET})
+    @GetMapping
     public Optional<ClientsEntity> getUserInfo() {
         String login = getCurrentUserLogin();
+        System.out.println(clientsService.findByClientLogin(login).get().getClientLname());
         return clientsService.findByClientLogin(login);
     }
 

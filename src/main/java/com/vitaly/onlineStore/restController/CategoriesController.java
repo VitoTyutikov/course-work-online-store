@@ -1,4 +1,4 @@
-package com.vitaly.onlineStore.controller;
+package com.vitaly.onlineStore.restController;
 
 import com.vitaly.onlineStore.entity.CategoriesEntity;
 import com.vitaly.onlineStore.service.CategoriesService;

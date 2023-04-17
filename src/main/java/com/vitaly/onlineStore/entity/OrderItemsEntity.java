@@ -28,10 +28,10 @@ public class OrderItemsEntity {
     @Basic
     @Column(name = "product_price", nullable = false, precision = 2)
     private Double productPrice;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false, insertable = false, updatable = false)
     private OrdersEntity ordersByOrderId;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false, insertable = false, updatable = false)
     private ProductsEntity productsByProductId;
 

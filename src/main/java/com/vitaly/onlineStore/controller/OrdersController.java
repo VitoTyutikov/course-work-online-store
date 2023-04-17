@@ -1,4 +1,4 @@
-package com.vitaly.onlineStore.restController;
+package com.vitaly.onlineStore.controller;
 
 import com.vitaly.onlineStore.entity.ClientsEntity;
 import com.vitaly.onlineStore.entity.OrdersEntity;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("orders")
 public class OrdersController {
     private final ClientsService clientsService;
     private final OrdersService ordersService;
@@ -36,6 +36,12 @@ public class OrdersController {
 
     }
 
+    @RequestMapping(value = "/delete/{orderId}", method = {RequestMethod.GET,RequestMethod.DELETE})
+    public String deleteOrder(@PathVariable Integer orderId){
+        //TODO add check for user can delete and create only their orders
+        ordersService.deleteById(orderId);
+        return "deleted";
+    }
     @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
     public Optional<OrdersEntity> findOrder(@PathVariable Integer orderId) {
         return ordersService.findOrder(orderId);

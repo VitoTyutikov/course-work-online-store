@@ -1,4 +1,4 @@
-fetch('http://localhost:8080/rest-user')
+fetch('http://localhost:8080/user')
     .then((response) => {
         if (!response.ok)
             alert("Unable to connect to server | HTTP Error: ${response.status}");

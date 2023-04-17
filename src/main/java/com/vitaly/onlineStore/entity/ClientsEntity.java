@@ -18,16 +18,19 @@ public class ClientsEntity {
     @Column(name = "client_id", nullable = false)
     private Integer clientId;
     @Basic
-    @Column(name = "client_fname", nullable = false, unique = true)
+    @Column(name = "client_fname", nullable = false)
     private String clientFname;
     @Basic
     @Column(name = "client_lname", nullable = false)
     private String clientLname;
     @Basic
-    @Column(name = "client_login", nullable = false)
+    @Column(name = "client_login", nullable = false, unique = true)
     private String clientLogin;
     @Basic
-    @Column(name = "client_email", nullable = false)
+    @Column(name = "client_phone_number",nullable = false,unique = true)
+    private String phoneNumber;
+    @Basic
+    @Column(name = "client_email", nullable = false, unique = true)
     private String clientEmail;
     @Basic
     @Column(name = "client_password", nullable = false)

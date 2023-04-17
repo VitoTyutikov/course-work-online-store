@@ -7,7 +7,7 @@ form.addEventListener('submit', async (event) => {
     const clientsDTO = Object.fromEntries(formData.entries());
 
 
-    const response = await fetch('/rest-user/registration', {
+    const response = await fetch('/user-rest/registration', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -1,4 +1,4 @@
-package com.vitaly.onlineStore.restController;
+package com.vitaly.onlineStore.controller;
 
 import com.vitaly.onlineStore.entity.ProductsEntity;
 import com.vitaly.onlineStore.service.ProductsService;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("products-rest")
+@RequestMapping("products")
 public class ProductsController implements Serializable {
     private final ProductsService productsService;
 

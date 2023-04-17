@@ -38,11 +38,11 @@ public class ReviewsEntity {
     @Column(name = "review_rating", nullable = false)
     private Double review_rating;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false, insertable = false, updatable = false)
     private ProductsEntity productByProductId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "client_id", nullable = false, insertable = false, updatable = false)
     private ClientsEntity clientByClientId;
 }

@@ -1,4 +1,4 @@
-package com.vitaly.onlineStore.restController;
+package com.vitaly.onlineStore.controller;
 
 import com.vitaly.onlineStore.dto.ClientsDTO;
 import com.vitaly.onlineStore.entity.ClientsEntity;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("rest-user")
+@RequestMapping("user")
 public class ClientsController {
     private final ClientsService clientsService;
 

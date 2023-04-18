@@ -8,9 +8,9 @@ fetch('http://localhost:8080/user')
         const tableBody = document.getElementById('clients-table');
         const client = json;
         const row = document.createElement('tr');
-        const idCell = document.createElement('td');
-        idCell.textContent = client.clientId;
-        row.appendChild(idCell);
+        // const idCell = document.createElement('td');
+        // idCell.textContent = client.clientId;
+        // row.appendChild(idCell);
 
         const fnameCell = document.createElement('td');
         fnameCell.textContent = client.clientFname;
@@ -28,9 +28,9 @@ fetch('http://localhost:8080/user')
         emailCell.textContent = client.clientEmail;
         row.appendChild(emailCell);
 
-        const passwordCell = document.createElement('td');
-        passwordCell.textContent = client.clientPassword;
-        row.appendChild(passwordCell);
+        // const passwordCell = document.createElement('td');
+        // passwordCell.textContent = client.clientPassword;
+        // row.appendChild(passwordCell);
 
         const indexCell = document.createElement('td');
         indexCell.textContent = client.clientIndex;

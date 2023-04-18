@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("products")
+@RequestMapping("/products")
 public class ProductsController implements Serializable {
     private final ProductsService productsService;
 
@@ -64,7 +64,7 @@ public class ProductsController implements Serializable {
     }
 
 
-    @RequestMapping(value = "delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @RequestMapping(value = "/delete/{id}", method = {RequestMethod.DELETE})
     public void deleteById(@PathVariable Integer id) {
         productsService.deleteById(id);
     }

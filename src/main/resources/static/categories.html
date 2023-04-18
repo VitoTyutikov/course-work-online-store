@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Categories</title>
 </head>
 <body>
+<table id="categoriesTable">
+    <tr>
+        <th>Category Name</th>
+        <th>Delete</th>
+    </tr>
+</table>
 
+<script>
+    fetch('http://localhost:8080/categories')
+        .then(response => response.json())
+        .then(categories => {
+            const table = document.getElementById('categoriesTable');
+            categories.forEach(category => {
+                const row = table.insertRow();
+                row.insertCell().textContent = category.categoryName;
+                const deleteCell = row.insertCell();
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', () => {
+                    fetch('http://localhost:8080/categories/delete/${category.categoryId}', { method: 'DELETE' })
+                .then(() => row.remove())
+                        .catch(error => console.error(error));
+                });
+                deleteCell.appendChild(deleteButton);
+            });
+        })
+        .catch(error => console.error(error));
+</script>
 </body>
 </html>

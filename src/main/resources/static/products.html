@@ -1,26 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Products Search</title>
 </head>
 <body>
+<form id="search-form">
+    <label for="product-name">Product Name:</label>
+    <input type="text" id="product-name" name="productName"><br>
+
+    <label for="price-from">Price From:</label>
+    <input type="number" id="price-from" name="priceFrom"><br>
+
+    <label for="price-to">Price To:</label>
+    <input type="number" id="price-to" name="priceTo"><br>
+
+    <label for="category-name">Category Name:</label>
+    <input type="text" id="category-name" name="categoryName"><br>
+
+    <label for="manufacturer-name">Manufacturer Name:</label>
+    <input type="text" id="manufacturer-name" name="manufacturersName"><br>
+
+    <button type="submit">Search</button>
+</form>
 
 <table id="products-table">
     <tr>
-        <th>productId</th>
-        <th>productName</th>
-        <th>ManufacturerId</th>
-        <th>manufacturerName</th>
-        <th>CategoryName</th>
-        <th>ProductPrice</th>
-        <th>ProductDescription</th>
-        <th>ProductImage</th>
-        <th>ProductRating</th>
-        <th>ProductDiscount</th>
-        <th>ProductIsActive</th>
+        <th>Product Name</th>
+        <th>Manufacturer Name</th>
+        <th>Category Name</th>
+        <th>Product Price</th>
+        <th>Product Description</th>
+        <th>Product Image</th>
+        <th>Product Rating</th>
+        <th>Product Discount</th>
+        <th>Product Is Active</th>
     </tr>
+    <tbody id="products-body">
+    </tbody>
 </table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/products.js"></script>
 </body>
 </html>

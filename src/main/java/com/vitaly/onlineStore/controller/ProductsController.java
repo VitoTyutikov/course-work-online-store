@@ -27,7 +27,7 @@ public class ProductsController implements Serializable {
         List<ProductsEntity> result = new ArrayList<>();
 
         // Filter by product name
-        if (productName != null) {
+        if (productName != null && !productName.isEmpty()) {
             List<ProductsEntity> productsByName = productsService.findByProductNameStartsWithIgnoreCase(productName);
             result.addAll(productsByName);
         }
@@ -35,12 +35,12 @@ public class ProductsController implements Serializable {
         // Filter by price range
         List<ProductsEntity> productsByPrice = productsService.findAll();
         if (priceFrom != null) {
-            productsByPrice.retainAll(productsService.findByProductPriceGreaterThanEqual(priceFrom));
+            productsByPrice.addAll(productsService.findByProductPriceGreaterThanEqual(priceFrom));
         }
         if (priceTo != null) {
-            productsByPrice.retainAll(productsService.findByProductPriceLessThanEqual(priceTo));
+            productsByPrice.addAll(productsService.findByProductPriceLessThanEqual(priceTo));
         }
-        result.addAll(productsByPrice);
+//        result.addAll(productsByPrice);
 
         // Filter by category name
         if (categoryName != null && !categoryName.isEmpty()) {
@@ -48,7 +48,7 @@ public class ProductsController implements Serializable {
             for (String category : categoryName) {
                 productsByCategory.addAll(productsService.findByCategoryName(category));
             }
-            result.retainAll(productsByCategory);
+            result.addAll(productsByCategory);
         }
 
 //         Filter by manufacturer name
@@ -57,7 +57,7 @@ public class ProductsController implements Serializable {
             for (String manufacturer : manufacturersName) {
                 productsByManufacturer.addAll(productsService.findByManufacturerName(manufacturer));
             }
-            result.retainAll(productsByManufacturer);
+            result.addAll(productsByManufacturer);
         }
 
         return result;

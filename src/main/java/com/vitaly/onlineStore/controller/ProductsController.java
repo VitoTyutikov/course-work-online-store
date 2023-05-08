@@ -18,46 +18,43 @@ public class ProductsController implements Serializable {
     }
 
     @GetMapping
-    public List<ProductsEntity> getProducts(
+    public List<ProductsEntity> findAll() {
+        return productsService.findAll();
+    }
+
+    @GetMapping("/{category}")
+    public List<ProductsEntity> findByFilter(
+            @PathVariable String category,
             @RequestParam(name = "productName", required = false) String productName,
             @RequestParam(name = "priceFrom", required = false) Double priceFrom,
             @RequestParam(name = "priceTo", required = false) Double priceTo,
-            @RequestParam(name = "categoryName", required = false) List<String> categoryName,
             @RequestParam(name = "manufacturersName", required = false) List<String> manufacturersName) {
-        List<ProductsEntity> result = new ArrayList<>();
+//    {
 
-        // Filter by product name
+        List<ProductsEntity> byCategory = productsService.findByCategoryName(category);
+        List<ProductsEntity> result = new ArrayList<>(byCategory);
+//        result.addAll(byCategory);
+//        // Filter by product name
         if (productName != null && !productName.isEmpty()) {
             List<ProductsEntity> productsByName = productsService.findByProductNameStartsWithIgnoreCase(productName);
-            result.addAll(productsByName);
+            result.retainAll(productsByName);
         }
-
+//
         // Filter by price range
-        List<ProductsEntity> productsByPrice = productsService.findAll();
+//        List<ProductsEntity> productsByPrice = productsService.findAll();
         if (priceFrom != null) {
-            productsByPrice.addAll(productsService.findByProductPriceGreaterThanEqual(priceFrom));
+            result.retainAll(productsService.findByProductPriceGreaterThanEqual(priceFrom));
         }
         if (priceTo != null) {
-            productsByPrice.addAll(productsService.findByProductPriceLessThanEqual(priceTo));
+            result.retainAll(productsService.findByProductPriceLessThanEqual(priceTo));
         }
-//        result.addAll(productsByPrice);
-
-        // Filter by category name
-        if (categoryName != null && !categoryName.isEmpty()) {
-            List<ProductsEntity> productsByCategory = new ArrayList<>();
-            for (String category : categoryName) {
-                productsByCategory.addAll(productsService.findByCategoryName(category));
-            }
-            result.addAll(productsByCategory);
-        }
-
-//         Filter by manufacturer name
+////         Filter by manufacturer name
         if (manufacturersName != null && !manufacturersName.isEmpty()) {
             List<ProductsEntity> productsByManufacturer = new ArrayList<>();
             for (String manufacturer : manufacturersName) {
                 productsByManufacturer.addAll(productsService.findByManufacturerName(manufacturer));
             }
-            result.addAll(productsByManufacturer);
+            result.retainAll(productsByManufacturer);
         }
 
         return result;

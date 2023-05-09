@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Products Search</title>
+    <style>
+        #category-label, #category-select, #manufacturer-label, #manufacturer-select {
+            display: inline-block;
+        }
+        img {
+            /*width: 200px;*/
+            height: 150px;
+        }
+    </style>
 </head>
 <body>
 <form id="search-form">
@@ -15,12 +24,13 @@
     <label for="price-to">Price To:</label>
     <input type="number" id="price-to" name="priceTo"><br>
 
-    <label for="category-name">Category Name:</label>
-    <input type="text" id="category-name" name="categoryName"><br>
+    <label id='category-label'>Select a category:</label>
+    <div id="category-select"></div>
+    <br/>
 
-    <label for="manufacturer-name">Manufacturer Name:</label>
-    <input type="text" id="manufacturer-name" name="manufacturersName"><br>
-
+    <label id="manufacturer-label">Manufacturer Name:</label>
+    <div id="manufacturer-select"></div>
+    <br/>
     <button type="submit">Search</button>
 </form>
 
@@ -32,7 +42,7 @@
         <th>Category Name</th>
         <th>Product Price</th>
         <th>Product Description</th>
-        <th>Product Image</th>
+        <th data-img="path/to/image.jpg"></th>
         <th>Product Rating</th>
         <th>Product Discount</th>
         <th>Product Is Active</th>
@@ -41,7 +51,7 @@
     <tbody id="products-body">
     </tbody>
 </table>
-
+<!--<img src="images/apple_watch_s6.jpeg" alt="">-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/products.js"></script>
 </body>

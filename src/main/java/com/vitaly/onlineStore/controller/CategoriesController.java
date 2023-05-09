@@ -2,8 +2,11 @@ package com.vitaly.onlineStore.controller;
 
 import com.vitaly.onlineStore.entity.CategoriesEntity;
 import com.vitaly.onlineStore.service.CategoriesService;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -25,12 +28,10 @@ public class CategoriesController {
         return categoriesService.getById(id);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable Integer id) {
+    @PreAuthorize("hasRole('ADMIN')")
+    @RequestMapping(value = "/delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public void deleteById(@PathVariable Integer id, HttpServletResponse response) throws IOException {
         categoriesService.deleteById(id);
-    }
-    @DeleteMapping("/delete/{name}")
-    public void deleteByCategoryName(@PathVariable String name){
-        categoriesService.deleteByCategoryName(name);
+        response.sendRedirect("http://localhost:8080/categories");
     }
 }

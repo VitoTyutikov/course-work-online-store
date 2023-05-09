@@ -4,6 +4,7 @@ import com.vitaly.onlineStore.entity.ClientsEntity;
 import com.vitaly.onlineStore.entity.OrdersEntity;
 import com.vitaly.onlineStore.service.ClientsService;
 import com.vitaly.onlineStore.service.OrdersService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -28,20 +29,24 @@ public class OrdersController {
         return authentication.getName();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','CLIENT','MANAGER')")
     @GetMapping
     public List<OrdersEntity> findByClientId() {
         String login = getCurrentUserLogin();
         Optional<ClientsEntity> client = clientsService.findClientIdByClientLogin(login);
-        return ordersService.findByClientId(client.get().getClientId());
+        return client.map(clientsEntity -> ordersService.findByClientId(clientsEntity.getClientId())).orElse(null);
 
     }
 
-    @RequestMapping(value = "/delete/{orderId}", method = {RequestMethod.GET,RequestMethod.DELETE})
-    public String deleteOrder(@PathVariable Integer orderId){
+    @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
+    @RequestMapping(value = "/delete/{orderId}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public String deleteOrder(@PathVariable Integer orderId) {
         //TODO add check for user can delete and create only their orders
+
         ordersService.deleteById(orderId);
         return "deleted";
     }
+
     @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
     public Optional<OrdersEntity> findOrder(@PathVariable Integer orderId) {
         return ordersService.findOrder(orderId);
@@ -50,5 +55,11 @@ public class OrdersController {
     @RequestMapping(value = "/add", method = {RequestMethod.GET, RequestMethod.POST})
     public void addOrder(@RequestBody OrdersEntity order) {
         ordersService.save(order);
+    }
+
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MANAGER')")
+    @GetMapping("/all")
+    public List<OrdersEntity> findAll() {
+        return ordersService.findAll();
     }
 }

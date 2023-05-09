@@ -3,6 +3,7 @@ package com.vitaly.onlineStore.controller;
 import com.vitaly.onlineStore.dto.ClientsDTO;
 import com.vitaly.onlineStore.entity.ClientsEntity;
 import com.vitaly.onlineStore.service.ClientsService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,7 @@ public class ClientsController {
         System.out.println(clientsService.findByClientLogin(login).get().getClientLname());
         return clientsService.findByClientLogin(login);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public void deleteById(@PathVariable Integer id) {
         clientsService.deleteById(id);

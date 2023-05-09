@@ -1,7 +1,5 @@
-var productsBody = $('#products-body');
-window.addEventListener('load', function () {
-    productTable = document.getElementById('products-table');
-
+// Fetches and renders the categories select element
+function renderCategoriesSelect() {
     fetch('http://localhost:8080/categories')
         .then(response => response.json())
         .then(categories => {
@@ -19,6 +17,10 @@ window.addEventListener('load', function () {
             });
             document.getElementById('category-select').appendChild(select);
         });
+}
+
+// Fetches and renders the manufacturers select element
+function renderManufacturersSelect() {
     fetch('http://localhost:8080/manufacturers')
         .then(response => response.json())
         .then(manufacturers => {
@@ -36,7 +38,13 @@ window.addEventListener('load', function () {
             });
             document.getElementById('manufacturer-select').appendChild(select);
         });
-    fetch('http://localhost:8080/products')
+}
+
+// Fetches and renders the products table
+function renderProductsTable(url) {
+    const productsBody = $('#products-body');
+
+    fetch(url)
         .then((response) => {
             if (!response.ok)
                 alert("Unable to connect to server | HTTP Error: ${response.status}");
@@ -46,14 +54,11 @@ window.addEventListener('load', function () {
             productsBody.empty(); // Удаляем уже отображенные товары
 
             for (const product of json) {
-                // var product = data[i];
                 var row = $('<tr>');
-                // row.append($('<td>').text(product.productName));
 
                 var td = document.createElement('td');
-                var e    = document.createElement('a');
-                // productId
-                e.href = 'http://localhost:8080/product/'+product.productId;
+                var e = document.createElement('a');
+                e.href = 'http://localhost:8080/product/' + product.productId;
                 e.title = product.productName;
                 e.appendChild(document.createTextNode(product.productName));
                 td.append(e);
@@ -63,82 +68,54 @@ window.addEventListener('load', function () {
                 row.append($('<td>').text(product.categoriesByCategoryId.categoryName));
                 row.append($('<td>').text(product.productPrice));
                 row.append($('<td>').text(product.productDescription));
-                // row.append($('<td>').text(product.productImage));
-
-                // row.append($('<td>').append($()))
 
                 const imgPath = product.productImage;
                 const img = document.createElement("img");
                 img.setAttribute("src", imgPath);
                 row.append(img);
 
-
-
                 row.append($('<td>').text(product.productRating));
-                row.append($('<td>').text(product.productDiscount));
-                row.append($('<td>').text(product.productIsActive));
+                // row.append($('<td>').text(product.productDiscount));
+                // row.append($('<td>').text(product.productIsActive));
                 productsBody.append(row);
             }
         });
-})
+}
+
+// Initializes the page
+function initializePage() {
+    renderCategoriesSelect();
+    renderManufacturersSelect();
+    renderProductsTable('http://localhost:8080/products');
+}
+
+// Handles the search form submission
+function handleSearchFormSubmit(event) {
+    event.preventDefault();
+    var url;
+    var productName = $('#product-name').val();
+    var priceFrom = $('#price-from').val();
+    var priceTo = $('#price-to').val();
+    var categoryName = $('#category-name').val();
+    var manufacturerName = $('#manufacturer-name').val();
+    if (!productName && !priceFrom && !priceTo && !categoryName && !manufacturerName) {
+        url = "http://localhost:8080/products";
+    } else if (categoryName === '') {
+        alert("Choose category");
+        return;
+    } else {
+        url = 'http://localhost:8080/products/' + categoryName + '?productName=' + productName + '&priceFrom=' + priceFrom + '&priceTo=' + priceTo + '&manufacturersName=' + encodeURIComponent(manufacturerName);
+    }
+    renderProductsTable(url);
+}
+
+window.addEventListener('load', function (){
+    initializePage();
+});
 
 
 $(document).ready(function () {
-    $('#search-form').submit(function (event) {
-        event.preventDefault();
-        var url;
-        var productName = $('#product-name').val();
-        var priceFrom = $('#price-from').val();
-        var priceTo = $('#price-to').val();
-        var categoryName = $('#category-name').val();
-        var manufacturerName = $('#manufacturer-name').val();
-        if (!productName && !priceFrom && !priceTo && !categoryName && !manufacturerName) {
-            // console.log("OK");
-            url = "http://localhost:8080/products";
-        } else if (categoryName === '') {
-            alert("Choose category");
-            return;
-        } else {
-            url = 'http://localhost:8080/products/' + categoryName + '?productName=' + productName + '&priceFrom=' + priceFrom + '&priceTo=' + priceTo + '&manufacturersName=' + encodeURIComponent(manufacturerName);
-        }
-        // console.log(url);
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error retrieving products.');
-                }
-                return response.json();
-            })
-            .then(json => {
-
-                productsBody.empty(); // Удаляем уже отображенные товары
-
-                for (const product of json) {
-                    // var product = data[i];
-                    var row = $('<tr>');
-                    row.append($('<td>').text(product.productName));
-                    row.append($('<td>').text(product.manufacturerName));
-                    row.append($('<td>').text(product.categoriesByCategoryId.categoryName));
-                    row.append($('<td>').text(product.productPrice));
-                    row.append($('<td>').text(product.productDescription));
-
-
-                    const imgPath = product.productImage;
-                    const img = document.createElement("img");
-                    img.setAttribute("src", imgPath);
-                    row.append(img);
-
-
-
-                    row.append($('<td>').text(product.productRating));
-                    row.append($('<td>').text(product.productDiscount));
-                    row.append($('<td>').text(product.productIsActive));
-                    productsBody.append(row);
-                }
-            })
-            .catch(error => {
-                alert(error.message);
-            });
+    $('#search-form').submit(function (event){
+        handleSearchFormSubmit(event);
     });
 });
-

@@ -13,18 +13,19 @@
 <body>
 
 
-
-
-
-
 <div>
     <h1 th:text="${product.productName}"></h1>
-    <img th:src="@{${'/'} + ${product.productImage}}" th:alt="${product.productName}" />
+    <img th:src="@{${'/'} + ${product.productImage}}"/>
     <p th:text="${product.productDescription}"></p>
-    <p th:text="'Price: '+ ${product.productPrice}">Price: </p>
+    <p th:text="'Price: '+ ${product.productPrice}"></p>
+    <a th:href="@{'/reviews/'+${product.productId}}">Reviews</a><br/>
 
-    <button>Add to Cart</button>
-<!--    TODO: do cart, active button, reviews-->
+
+    <form th:action="@{'/cart/add/'+ ${product.getProductId()}}" method="post">
+        <input type="submit" value="add to cart">
+    </form>
+<!--    <button>Add to Cart</button>-->
+    <!--    TODO: do cart, active button, reviews-->
 
 </div>
 </body>

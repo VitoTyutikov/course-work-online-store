@@ -60,6 +60,9 @@ public class ProductsService {
     public List<ProductsEntity> findByCategoryName(String categoryName) {
         return productsRepository.findByCategoryName(categoryName);
     }
+    public Optional<ProductsEntity> findByProductId(Integer id){
+        return productsRepository.findById(id);
+    }
 
 
 }

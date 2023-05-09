@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+<body>
+<h1>Cart</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Count</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cartItem : ${cartItems}">
+        <td th:text="${cartItem.getProductByProductId().getProductName()}"></td>
+        <td th:text="${cartItem.getCountProducts()}"></td>
+        <td th:text="${cartItem.getProductByProductId().getProductPrice()}"></td>
+    </tr>
+    </tbody>
+</table>
+<form action="/cart/confirm" method="post">
+    <input type="submit" value="order">
+</form>
+<br/>
+<a href="/products.html">Menu</a>
+</body>
+</html>

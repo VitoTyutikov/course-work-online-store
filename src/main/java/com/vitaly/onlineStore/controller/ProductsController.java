@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -69,6 +70,17 @@ public class ProductsController implements Serializable {
     @RequestMapping(value = "add", method = {RequestMethod.POST, RequestMethod.GET})
     public ProductsEntity newProduct(@RequestBody ProductsEntity newProductsEntity) {
         return productsService.save(newProductsEntity);
+    }
+
+
+    @GetMapping("/id={id}")
+    public ProductsEntity getById(@PathVariable Integer id){
+        Optional<ProductsEntity> product = productsService.getById(id);
+        if(product.isPresent())
+            return productsService.getById(id).get();
+        else{
+            return null;//FIXME
+        }
     }
 
 }

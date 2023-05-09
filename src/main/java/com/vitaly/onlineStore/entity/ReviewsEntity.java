@@ -18,25 +18,25 @@ public class ReviewsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "review_id", nullable = false)
-    private Integer review_id;
+    private Integer reviewId;
     @Basic
     @Column(name = "product_id", nullable = false)
-    private Integer product_id;
+    private Integer productId;
     @Basic
     @Column(name = "client_id", nullable = false)
-    private Integer client_id;
+    private Integer clientId;
     @Basic
     @Column(name = "review_date", nullable = false)
-    private LocalDate review_date;
+    private LocalDate reviewDate;
     @Basic
     @Column(name = "review_title", nullable = false)
-    private String review_title;
+    private String reviewTitle;
     @Basic
     @Column(name = "review_text", nullable = false)
-    private String review_text;
+    private String reviewText;
     @Basic
     @Column(name = "review_rating", nullable = false)
-    private Double review_rating;
+    private Double reviewRating;
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "product_id", nullable = false, insertable = false, updatable = false)

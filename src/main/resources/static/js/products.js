@@ -48,7 +48,17 @@ window.addEventListener('load', function () {
             for (const product of json) {
                 // var product = data[i];
                 var row = $('<tr>');
-                row.append($('<td>').text(product.productName));
+                // row.append($('<td>').text(product.productName));
+
+                var td = document.createElement('td');
+                var e    = document.createElement('a');
+                // productId
+                e.href = 'http://localhost:8080/product/'+product.productId;
+                e.title = product.productName;
+                e.appendChild(document.createTextNode(product.productName));
+                td.append(e);
+                row.append(td);
+
                 row.append($('<td>').text(product.manufacturerName));
                 row.append($('<td>').text(product.categoriesByCategoryId.categoryName));
                 row.append($('<td>').text(product.productPrice));

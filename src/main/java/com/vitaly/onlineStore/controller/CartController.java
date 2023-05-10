@@ -96,8 +96,6 @@ public class CartController {
     @Transactional
     @RequestMapping(value = "/confirm", method = {RequestMethod.POST})
     public String confirmCart(Authentication authentication) {
-        // TODO: 24.04.2023 all lines with this user id send to order or order items
-        // TODO: 24.04.2023 then we need to delete all lines with this user id in cart
         Optional<ClientsEntity> client = clientsService.findByClientLogin(authentication.getName());
         Integer clientId = client.get().getClientId();
         List<CartEntity> userCart = cartService.findByClientId(clientId);
@@ -120,7 +118,7 @@ public class CartController {
 
             cartService.deleteAll(userCart);
 
-            return "redirect:/"; //FIXME: "redirect:/orders"
+            return "redirect:/orders.html";
         } else {
             return "redirect:/products.html";
         }

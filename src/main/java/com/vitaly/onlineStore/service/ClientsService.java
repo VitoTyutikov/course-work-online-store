@@ -50,6 +50,7 @@ public class ClientsService {
 
     public String registerNewUser(@RequestBody ClientsDTO clientsDTO) {
         ClientsEntity client = new ClientsEntity();
+        client.setClientPhone(clientsDTO.getClientPhone());
         client.setClientLogin(clientsDTO.getClientLogin());
         client.setClientFname(clientsDTO.getClientFname());
         client.setClientLname(clientsDTO.getClientLname());
@@ -63,7 +64,7 @@ public class ClientsService {
         int exists = this.save(client);
         if (exists == -1)
             return "User With this login exists";
-        return "S";//TODO change it
+        return "redirect:/";//TODO change it
     }
 
     public Optional<ClientsEntity> findClientIdByClientLogin(String clientLogin) {

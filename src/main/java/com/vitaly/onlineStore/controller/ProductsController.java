@@ -2,6 +2,7 @@ package com.vitaly.onlineStore.controller;
 
 import com.vitaly.onlineStore.entity.ProductsEntity;
 import com.vitaly.onlineStore.service.ProductsService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -61,13 +62,13 @@ public class ProductsController implements Serializable {
         return result;
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN','CLIENT','MANAGER')")
     @RequestMapping(value = "/delete/{id}", method = {RequestMethod.DELETE})
     public void deleteById(@PathVariable Integer id) {
         productsService.deleteById(id);
     }
-
-    @RequestMapping(value = "add", method = {RequestMethod.POST, RequestMethod.GET})
+    @PreAuthorize("hasAnyRole('ADMIN','CLIENT','MANAGER')")
+    @RequestMapping(value = "/add", method = {RequestMethod.POST, RequestMethod.GET})
     public ProductsEntity newProduct(@RequestBody ProductsEntity newProductsEntity) {
         return productsService.save(newProductsEntity);
     }

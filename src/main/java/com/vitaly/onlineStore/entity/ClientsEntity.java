@@ -28,7 +28,7 @@ public class ClientsEntity {
     private String clientLogin;
     @Basic
     @Column(name = "client_phone_number",nullable = false,unique = true)
-    private String phoneNumber;
+    private String clientPhone;
     @Basic
     @Column(name = "client_email", nullable = false, unique = true)
     private String clientEmail;

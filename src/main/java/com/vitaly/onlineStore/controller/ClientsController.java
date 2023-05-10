@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class ClientsController {
     private final ClientsService clientsService;
 

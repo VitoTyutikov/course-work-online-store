@@ -19,6 +19,16 @@
         <td th:text="${cartItem.getProductByProductId().getProductName()}"></td>
         <td th:text="${cartItem.getCountProducts()}"></td>
         <td th:text="${cartItem.getProductByProductId().getProductPrice()}"></td>
+        <td>
+            <form th:action="@{'/cart/remove/'+${cartItem.getProductId()}}" >
+                <button>Delete one</button>
+            </form>
+        </td>
+        <td>
+            <form th:action = "@{'/cart/add/'+${cartItem.getProductId()}}" method="post">
+                <button>Add one</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

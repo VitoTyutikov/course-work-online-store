@@ -29,7 +29,7 @@ public class OnlineStoreApplication {
         client.setClientPassword(passwordEncoder.encode("admin"));
         client.setClientLogin("admin");
         client.setUserRole("ROLE_ADMIN");
-        client.setPhoneNumber("111");
+        client.setClientPhone("111");
         clientsService.save(client);
 
         client = new ClientsEntity();
@@ -41,7 +41,7 @@ public class OnlineStoreApplication {
         client.setClientPassword(passwordEncoder.encode("manag"));
         client.setClientLogin("Manager");
         client.setUserRole("ROLE_MANAGER");
-        client.setPhoneNumber("222");
+        client.setClientPhone("222");
         clientsService.save(client);
 
         client = new ClientsEntity();
@@ -53,7 +53,7 @@ public class OnlineStoreApplication {
         client.setClientPassword(passwordEncoder.encode("client"));
         client.setClientLogin("client");
         client.setUserRole("ROLE_CLIENT");
-        client.setPhoneNumber("333");
+        client.setClientPhone("333");
         clientsService.save(client);
 
 

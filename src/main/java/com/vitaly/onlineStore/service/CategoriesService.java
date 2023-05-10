@@ -31,5 +31,8 @@ public class CategoriesService {
         categoriesRepository.deleteById(id);
     }
 
+    public void deleteByCategoryName(String name){
+        categoriesRepository.deleteByCategoryName(name);
+    }
 
 }

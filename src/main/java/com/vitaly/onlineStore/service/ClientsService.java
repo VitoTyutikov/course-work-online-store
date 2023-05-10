@@ -29,8 +29,13 @@ public class ClientsService {
     }
 
     public Integer save(ClientsEntity clientsEntity) {
-        clientsRepository.save(clientsEntity);
-        return clientsEntity.getClientId();
+        Optional<ClientsEntity> client = findByClientLogin(clientsEntity.getClientLogin());
+        if (client.isEmpty()) {
+
+            clientsRepository.save(clientsEntity);
+            return clientsEntity.getClientId();
+        }
+        return -1;
     }
 
     public void deleteById(Integer id) {
@@ -38,14 +43,14 @@ public class ClientsService {
     }
 
 
-    public Optional<ClientsEntity> findByClientLogin(String clientLogin){
+    public Optional<ClientsEntity> findByClientLogin(String clientLogin) {
+        System.out.println(clientLogin);
         return clientsRepository.findByClientLogin(clientLogin);
     }
-    public String registerNewUser(@RequestBody ClientsDTO clientsDTO){
+
+    public String registerNewUser(@RequestBody ClientsDTO clientsDTO) {
         ClientsEntity client = new ClientsEntity();
-        if(clientsRepository.findByClientLogin(clientsDTO.getClientLogin()).isPresent())
-            return "User With this login exists";
-        client.setUserRole("ROLE_USER");
+        client.setClientPhone(clientsDTO.getClientPhone());
         client.setClientLogin(clientsDTO.getClientLogin());
         client.setClientFname(clientsDTO.getClientFname());
         client.setClientLname(clientsDTO.getClientLname());
@@ -54,7 +59,17 @@ public class ClientsService {
         client.setClientIndex(clientsDTO.getClientIndex());
         client.setClientCity(clientsDTO.getClientCity());
         client.setClientAddress(clientsDTO.getClientAddress());
-        clientsRepository.save(client);
-        return "S";//TODO change it
+        client.setUserRole(clientsDTO.getUserRole());
+//        clientsRepository.save(client);
+        int exists = this.save(client);
+        if (exists == -1)
+            return "User With this login exists";
+        return "redirect:/";//TODO change it
     }
+
+    public Optional<ClientsEntity> findClientIdByClientLogin(String clientLogin) {
+        return clientsRepository.findClientIdByClientLogin(clientLogin);
+    }
+
+
 }

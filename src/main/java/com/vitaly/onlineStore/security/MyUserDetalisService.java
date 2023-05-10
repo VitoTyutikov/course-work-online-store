@@ -19,8 +19,6 @@ public class MyUserDetalisService implements UserDetailsService {
 
     @Autowired
     ClientsService clientsService;
-
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<ClientsEntity> clients = clientsService.findByClientLogin(username);

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products Search</title>
+    <style>
+        #category-label, #category-select, #manufacturer-label, #manufacturer-select {
+            display: inline-block;
+        }
+        img {
+            /*width: 200px;*/
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+<form id="search-form">
+    <label for="product-name">Product Name:</label>
+    <input type="text" id="product-name" name="productName"><br>
+
+    <label for="price-from">Price From:</label>
+    <input type="number" id="price-from" name="priceFrom"><br>
+
+    <label for="price-to">Price To:</label>
+    <input type="number" id="price-to" name="priceTo"><br>
+
+    <label id='category-label'>Select a category:</label>
+    <div id="category-select"></div>
+    <br/>
+
+    <label id="manufacturer-label">Manufacturer Name:</label>
+    <div id="manufacturer-select"></div>
+    <br/>
+    <button type="submit">Search</button>
+</form>
+
+<table id="products-table">
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Manufacturer Name</th>
+        <th>Category Name</th>
+        <th>Product Price</th>
+        <th>Product Description</th>
+        <th data-img="path/to/image.jpg"></th>
+        <th>Product Rating</th>
+<!--        <th>Product Discount</th>-->
+<!--        <th>Product Is Active</th>-->
+
+    </tr>
+    </thead>
+    <tbody id="products-body">
+    </tbody>
+</table>
+<!--<img src="images/apple_watch_s6.jpeg" alt="">-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>

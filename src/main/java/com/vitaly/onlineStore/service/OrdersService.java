@@ -5,6 +5,7 @@ import com.vitaly.onlineStore.repository.OrdersRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -30,5 +31,12 @@ public class OrdersService {
 
     public void deleteById(Integer id) {
         ordersRepository.deleteById(id);
+    }
+
+    public List<OrdersEntity> findByClientId(Integer clientId){
+        return ordersRepository.findByClientId(clientId);
+    }
+    public Optional<OrdersEntity> findOrder(Integer orderId){
+        return ordersRepository.findById(orderId);
     }
 }

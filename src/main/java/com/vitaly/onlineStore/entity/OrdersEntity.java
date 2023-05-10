@@ -22,9 +22,9 @@ public class OrdersEntity {
     @Basic
     @Column(name = "client_id", nullable = false)
     private Integer clientId;
-    @Basic
-    @Column(name = "store_id", nullable = false)
-    private Integer storeId;
+//    @Basic
+//    @Column(name = "store_id", nullable = false)
+//    private Integer storeId;
     @Basic
     @Column(name = "order_date", nullable = false)
     private LocalDate orderDate;
@@ -39,8 +39,8 @@ public class OrdersEntity {
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "client_id", nullable = false, insertable = false, updatable = false)
     private ClientsEntity clientsByClientId;
-    @ManyToOne
-    @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false, insertable = false, updatable = false)
-    private StoresEntity storesByStoreId;
+//    @ManyToOne
+//    @JoinColumn(name = "store_id", referencedColumnName = "store_id", nullable = false, insertable = false, updatable = false)
+//    private StoresEntity storesByStoreId;
 
 }

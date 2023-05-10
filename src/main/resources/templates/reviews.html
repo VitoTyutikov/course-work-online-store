@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>Client name</th>
+    <th>Client email</th>
+    <th>reviewDate</th>
+    <th>reviewTitle</th>
+    <th>reviewText</th>
+    <th>reviewRating</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <th:block th:each="review : ${reviews}">
+    <tr>
+      <td th:text="${review.clientByClientId.getClientFname()}"></td>
+      <td th:text="${review.clientByClientId.getClientEmail()}"></td>
+      <td th:text="${review.reviewDate}"></td>
+      <td th:text="${review.reviewTitle}"></td>
+      <td th:text="${review.reviewText}"></td>
+      <td th:text="${review.reviewRating}"></td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+<form th:action="@{'/reviews/add/'+${reviews.get(0).productId}}" th:object="${review}" method="post">
+  Title<input type="text" th:field="*{reviewTitle}"/>
+  Text<input type="text" th:field="*{reviewText}"/>
+  reviewRating<input type="number" min = 0 max = 5 th:field="*{reviewRating}"/>
+  <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+
+</form>
+</body>
+</html>

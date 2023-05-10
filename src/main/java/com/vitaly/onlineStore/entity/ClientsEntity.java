@@ -24,10 +24,13 @@ public class ClientsEntity {
     @Column(name = "client_lname", nullable = false)
     private String clientLname;
     @Basic
-    @Column(name = "client_login", nullable = false)
+    @Column(name = "client_login", nullable = false, unique = true)
     private String clientLogin;
     @Basic
-    @Column(name = "client_email", nullable = false)
+    @Column(name = "client_phone_number",nullable = false,unique = true)
+    private String clientPhone;
+    @Basic
+    @Column(name = "client_email", nullable = false, unique = true)
     private String clientEmail;
     @Basic
     @Column(name = "client_password", nullable = false)

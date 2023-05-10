@@ -23,13 +23,15 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //TODO add lists with urls for every role
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/products", "/products/","/user/registration", "/user").permitAll()
+                .requestMatchers( "/products","/user/registration", "/**").permitAll()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/products/delete", "/products/delete/**", "/products/add", "/products/add/**")
-                .hasRole("ADMIN")
+                .requestMatchers("/products/delete", "/products/delete/**", "/products/add", "/products/add/**","/user/**", "/orders/**", "/orders","/**/*.html","/**/*.js")
+                .permitAll()
+//                .hasAnyRole("ADMIN", "MANUFACTURER", "CLIENT")
                 .and()
                 .formLogin()
                 .and()

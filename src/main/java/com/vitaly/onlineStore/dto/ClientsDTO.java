@@ -16,6 +16,7 @@ public class ClientsDTO {
     private String clientLname;
     private String clientLogin;
     private String clientEmail;
+    private String clientPhone;
     private String clientPassword;
     private Integer clientIndex;
     private String clientCity;

@@ -44,7 +44,7 @@ public class ClientsService {
 
 
     public Optional<ClientsEntity> findByClientLogin(String clientLogin) {
-        System.out.println(clientLogin);
+//        System.out.println(clientLogin);
         return clientsRepository.findByClientLogin(clientLogin);
     }
 

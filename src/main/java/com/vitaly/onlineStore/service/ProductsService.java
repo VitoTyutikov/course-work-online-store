@@ -3,6 +3,7 @@ package com.vitaly.onlineStore.service;
 import com.vitaly.onlineStore.entity.ProductsEntity;
 import com.vitaly.onlineStore.repository.ProductsRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,6 +64,10 @@ public class ProductsService {
     public Optional<ProductsEntity> findByProductId(Integer id){
         return productsRepository.findById(id);
     }
-
-
+    @Transactional
+    public void updateRating(Integer productId,Double rating){
+//        ProductsEntity product = productsRepository.findById(productId).get();
+//        product.setProductRating(rating);
+        productsRepository.updateProductRating(productId,rating);
+    }
 }

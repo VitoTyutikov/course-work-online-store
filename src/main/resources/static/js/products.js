@@ -74,7 +74,7 @@ function renderProductsTable(url) {
                 img.setAttribute("src", imgPath);
                 row.append(img);
 
-                row.append($('<td>').text(product.productRating));
+                row.append($('<td>').text(Math.round(product.productRating)));
                 // row.append($('<td>').text(product.productDiscount));
                 // row.append($('<td>').text(product.productIsActive));
                 productsBody.append(row);

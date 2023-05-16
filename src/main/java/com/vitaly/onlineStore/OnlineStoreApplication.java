@@ -1,9 +1,12 @@
 package com.vitaly.onlineStore;
 
+import com.vitaly.onlineStore.entity.ClientsEntity;
+import com.vitaly.onlineStore.service.ClientsService;
 import com.vitaly.onlineStore.service.ReviewsService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class OnlineStoreApplication {
@@ -12,18 +15,18 @@ public class OnlineStoreApplication {
     public OnlineStoreApplication(ReviewsService reviewsService) {
         this.reviewsService = reviewsService;
     }
-//    private ClientsService clientsService;
-//    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private ClientsService clientsService;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public static void main(String[] args) {
         SpringApplication.run(OnlineStoreApplication.class, args);
     }
 
-    @PostConstruct
-    public void init() {
-        for (int i=1;i<35;i++){
-            reviewsService.updateProductRating(i);
-        }
+//    @PostConstruct
+//    public void init() {
+////        for (int i=1;i<35;i++){
+////            reviewsService.updateProductRating(i);
+////        }
 //        ClientsEntity client = new ClientsEntity();
 //        client.setClientAddress("");
 //        client.setClientEmail("admin@mail.com");
@@ -59,7 +62,7 @@ public class OnlineStoreApplication {
 //        client.setUserRole("ROLE_CLIENT");
 //        client.setClientPhone("333");
 //        clientsService.save(client);
-
-
-    }
+//
+//
+//    }
 }

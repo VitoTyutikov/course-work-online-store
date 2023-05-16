@@ -2,48 +2,100 @@
 <html>
 <head>
   <title>Registration Form</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Registration Form</h1>
-<form id="registration-form">
-  <label for="clientFname">First Name:</label>
-  <input type="text" id="clientFname" name="clientFname" required><br>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Online Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/products.html">Menu</a>
+        </li>
 
-  <label for="clientLname">Last Name:</label>
-  <input type="text" id="clientLname" name="clientLname" required><br>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/clients-form.html">Register</a>
+        </li>
+        <!--                <li class="nav-item">-->
+        <!--                    <a class="nav-link" href="/cart">Cart</a>-->
+        <!--                </li>-->
+        <li class="nav-item">
+          <a class="nav-link" href="/orders.html">Orders</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
 
-  <label for="clientLogin">Username:</label>
-  <input type="text" id="clientLogin" name="clientLogin" required><br>
+<div class="container">
+  <h1>Registration Form</h1>
+  <form id="registration-form">
+    <div class="form-group">
+      <label for="clientFname">First Name:</label>
+      <input type="text" class="form-control" id="clientFname" name="clientFname" required>
+    </div>
 
-  <label for="clientEmail">Email:</label>
-  <input type="email" id="clientEmail" name="clientEmail" required><br>
+    <div class="form-group">
+      <label for="clientLname">Last Name:</label>
+      <input type="text" class="form-control" id="clientLname" name="clientLname" required>
+    </div>
 
-  <label for="clientPassword">Password:</label>
-  <input type="password" id="clientPassword" name="clientPassword" required><br>
+    <div class="form-group">
+      <label for="clientLogin">Username:</label>
+      <input type="text" class="form-control" id="clientLogin" name="clientLogin" required>
+    </div>
 
-  <label for="clientIndex">Index:</label>
-  <input type="number" id="clientIndex" name="clientIndex" required><br>
+    <div class="form-group">
+      <label for="clientEmail">Email:</label>
+      <input type="email" class="form-control" id="clientEmail" name="clientEmail" required>
+    </div>
 
-  <label for="clientCity">City:</label>
-  <input type="text" id="clientCity" name="clientCity" required><br>
+    <div class="form-group">
+      <label for="clientPassword">Password:</label>
+      <input type="password" class="form-control" id="clientPassword" name="clientPassword" required>
+    </div>
 
-  <label for="clientAddress">Address:</label>
-  <input type="text" id="clientAddress" name="clientAddress" required><br>
+    <div class="form-group">
+      <label for="clientIndex">Index:</label>
+      <input type="number" class="form-control" id="clientIndex" name="clientIndex" required>
+    </div>
 
-  <label for="clientPhone">Phone:</label>
-  <input type="text" id="clientPhone" name="clientPhone" required><br>
+    <div class="form-group">
+      <label for="clientCity">City:</label>
+      <input type="text" class="form-control" id="clientCity" name="clientCity" required>
+    </div>
 
+    <div class="form-group">
+      <label for="clientAddress">Address:</label>
+      <input type="text" class="form-control" id="clientAddress" name="clientAddress" required>
+    </div>
 
-  <label for="userRole">Role:</label>
-  <select id="userRole" name="userRole">
-    <option value="ROLE_CLIENT">Client</option>
-    <option value="ROLE_ADMIN">Admin</option>
-    <option value="ROLE_MANAGER">Manager</option>
-  </select><br>
+    <div class="form-group">
+      <label for="clientPhone">Phone:</label>
+      <input type="text" class="form-control" id="clientPhone" name="clientPhone" required>
+    </div>
 
-  <button type="submit" value="Register" id="submit-button">Register</button>
-</form>
+    <div class="form-group">
+      <label for="userRole">Role:</label>
+      <select class="form-control" id="userRole" name="userRole">
+        <option value="ROLE_CLIENT">Client</option>
+        <option value="ROLE_ADMIN">Admin</option>
+        <option value="ROLE_MANAGER">Manager</option>
+      </select>
+    </div>
 
+    <button type="submit" class="btn btn-primary" id="submit-button">Register</button>
+  </form>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="./js/clients-form.js"></script>
 </body>
 </html>

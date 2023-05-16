@@ -1,32 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${product.productName}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
-        img {
-            /*width: 200px;*/
-            height: 250px;
+        .max-image {
+            height: 375px;
+            width: auto;
         }
+
+
     </style>
 </head>
 <body>
-
-
-<div>
-    <h1 th:text="${product.productName}"></h1>
-    <img th:src="@{${'/'} + ${product.productImage}}"/>
-    <p th:text="${product.productDescription}"></p>
-    <p th:text="'Price: '+ ${product.productPrice}"></p>
-    <a th:href="@{'/reviews/'+${product.productId}}">Reviews</a><br/>
-
-
-    <form th:action="@{'/cart/add/'+ ${product.getProductId()}}" method="post">
-        <input type="submit" value="add to cart">
-    </form>
-<!--    <button>Add to Cart</button>-->
-    <!--    TODO: do cart, active button, reviews-->
-
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Online Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/products.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clients-form.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders.html">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user.html">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
+<br/>
+<div class="container">
+    <h1 th:text="${product.productName}"></h1>
+    <div class="row">
+        <div class="col-md-6">
+            <img th:src="@{${'/'} + ${product.productImage}}" class="img-fluid max-image" alt="Product Image">
+        </div>
+        <div class="col-md-6">
+            <div class="product-details">
+                <p th:text="${product.productDescription}"></p>
+                <p th:text="'Price: ' + ${product.productPrice}"></p>
+                <div class="actions">
+                    <a th:href="@{'/reviews/'+${product.productId}}" class="btn btn-primary">Reviews</a>
+                    <br/>
+                    <br/>
+                    <form th:action="@{'/cart/add/'+ ${product.getProductId()}}" method="post">
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

@@ -1,24 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<table id='clients-table'>
-    <tr>
-<!--        <th>ID</th>-->
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Login</th>
-        <th>Email</th>
-        <th>Index</th>
-        <th>City</th>
-        <th>Address</th>
-        <th>Role</th>
-    </tr>
-</table>
-<a href="orders.html">Orders</a>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Online Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/products.html">Menu</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clients-form.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders.html">Orders</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Clients</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="clients-list">
+                <div class="client">
+                    <div class="client-details">
+                        <p><strong>First Name:</strong> <span id="client-fname"></span></p>
+                        <p><strong>Last Name:</strong> <span id="client-lname"></span></p>
+                        <p><strong>Login:</strong> <span id="client-login"></span></p>
+                        <p><strong>Email:</strong> <span id="client-email"></span></p>
+                        <p><strong>Index:</strong> <span id="client-index"></span></p>
+                        <p><strong>City:</strong> <span id="client-city"></span></p>
+                        <p><strong>Address:</strong> <span id="client-address"></span></p>
+                        <p><strong>Role:</strong> <span id="client-role"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="js/user.js"></script>
+
 </body>
 </html>

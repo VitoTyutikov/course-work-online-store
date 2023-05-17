@@ -1,8 +1,10 @@
 package com.vitaly.onlineStore.controller;
 
 import com.vitaly.onlineStore.entity.ClientsEntity;
+import com.vitaly.onlineStore.entity.OrderItemsEntity;
 import com.vitaly.onlineStore.entity.OrdersEntity;
 import com.vitaly.onlineStore.service.ClientsService;
+import com.vitaly.onlineStore.service.OrderItemsService;
 import com.vitaly.onlineStore.service.OrdersService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -17,11 +19,12 @@ import java.util.Optional;
 public class OrdersController {
     private final ClientsService clientsService;
     private final OrdersService ordersService;
+    private final OrderItemsService orderItemsService;
 
-
-    public OrdersController(ClientsService clientsService, OrdersService ordersService) {
+    public OrdersController(ClientsService clientsService, OrdersService ordersService, OrderItemsService orderItemsService) {
         this.clientsService = clientsService;
         this.ordersService = ordersService;
+        this.orderItemsService = orderItemsService;
     }
 
     public String getCurrentUserLogin() {
@@ -41,15 +44,20 @@ public class OrdersController {
     @PreAuthorize("hasAnyRole('ADMIN', 'MANAGER')")
     @RequestMapping(value = "/delete/{orderId}", method = {RequestMethod.GET, RequestMethod.DELETE})
     public String deleteOrder(@PathVariable Integer orderId) {
-        //TODO add check for user can delete and create only their orders
-
         ordersService.deleteById(orderId);
         return "deleted";
     }
 
+//    @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
+//    public Optional<OrdersEntity> findOrder(@PathVariable Integer orderId) {
+//        return ordersService.findOrder(orderId);
+//    }
+
     @RequestMapping(value = "/{orderId}", method = RequestMethod.GET)
-    public Optional<OrdersEntity> findOrder(@PathVariable Integer orderId) {
-        return ordersService.findOrder(orderId);
+    public List<OrderItemsEntity> findOrderItems(@PathVariable Integer orderId) {
+        return orderItemsService.findByOrderId(orderId);
+
+//        return ordersService.findOrder(orderId);
     }
 
     @RequestMapping(value = "/add", method = {RequestMethod.GET, RequestMethod.POST})

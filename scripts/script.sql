@@ -139,140 +139,120 @@ VALUES ('Apple'),
        ('Google'),
        ('TCL'),
        ('Bose');
--- INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
---                                   product_image, product_rating, product_discount, product_is_active)
--- VALUES ('MacBook Pro', 1, 1, 1999.99, 'Powerful and portable laptop from Apple',
---         '../images/mac_book_pro.jpg', 4.5, 10, 1),
---        ('Galaxy S21', 2, 2, 899.99, 'High-end smartphone from Samsung', 'images/galaxy_s21.jpeg',
---         4.7, 0, 1),
---        ('iPad Air', 1, 3, 599.99, 'Thin and light tablet from Apple', 'images/ipad_air.jpg', 4.6, 5,
---         1),
---        ('55" OLED TV', 7, 4, 1499.99, 'Stunning OLED TV from LG', 'images/lg_tv_55.jpeg', 4.8, 15,
---         1),
---        ('Noise-Cancelling Headphones', 5, 5, 349.99, 'Premium headphones from Bose',
---         'https://example.com/images/bose-headphones.jpg', 4.5, 0, 1),
---        ('Mirrorless Camera', 10, 6, 1299.99, 'High-quality camera from Nikon',
---         'https://example.com/images/nikon-camera.jpg', 4.9, 20, 1),
---        ('Wireless Printer', 8, 7, 249.99, 'Versatile printer from HP', 'https://example.com/images/hp-printer.jpg', 4.2,
---         0, 1),
---        ('PS5', 4, 8, 499.99, 'Next-gen gaming console from Sony', 'https://example.com/images/ps5.jpg', 4.7, 0, 1),
---        ('Apple Watch Series 6', 1, 9, 399.99, 'Advanced smartwatch from Apple',
---         'images/apple_watch_s6.jpeg', 4.8, 0, 1),
---        ('Smart Thermostat', 3, 10, 149.99, 'Intelligent thermostat from Nest',
---         'https://example.com/images/nest-thermostat.jpg', 4.3, 0, 1);
+*
 
 -- INSERT statements for Laptops
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('MacBook Pro', 1, 1, 1999.00, 'A powerful laptop for creative professionals.',
-        'images/mac_book_pro.jpg', 4.8, 0.1, 1),
+        'images/mac_book_pro.jpg', 0.0, 0.1, 1),
        ('Galaxy Book Pro', 2, 1, 1399.00, 'A sleek and lightweight laptop for on-the-go productivity.',
-        'images/galaxy_book_pro.jpg', 4.5, 0.05, 1),
+        'images/galaxy_book_pro.jpg', 0.0, 0.05, 1),
        ('Surface Laptop 4', 3, 1, 1299.00, 'A versatile laptop with a detachable touch screen.',
-        'images/surface_laptop_4.jpg', 4.6, 0.1, 1),
+        'images/surface_laptop_4.jpg', 0.0, 0.1, 1),
        ('ThinkPad X1 Carbon', 4, 1, 1499.00, 'A durable and high-performance business laptop.',
-        'images/thinkpad_x1_carbon.jpeg', 4.7, 0.05, 1),
+        'images/thinkpad_x1_carbon.jpeg', 0.0, 0.05, 1),
        ('Inspiron 14 5000', 5, 1, 899.00, 'A budget-friendly laptop with good performance.',
-        'images/inspiron_14_5000.png', 4.2, 0.1, 1);
+        'images/inspiron_14_5000.png', 0.0, 0.1, 1);
 
 -- INSERT statements for Smartphones
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('iPhone 13 Pro', 1, 2, 1099.00, 'A premium smartphone with advanced camera and performance features.',
-        'images/iphone_13_pro.jpeg', 4.9, 0.1, 1),
+        'images/iphone_13_pro.jpeg', 0.0, 0.1, 1),
        ('Galaxy S21 Ultra', 2, 2, 1199.00, 'A flagship smartphone with a large display and powerful processor.',
-        'images/galaxy_s21_ultra.jpg', 4.8, 0.1, 1),
+        'images/galaxy_s21_ultra.jpg', 0.0, 0.1, 1),
        ('Surface Duo 2', 3, 2, 1499.00, 'A unique dual-screen smartphone with productivity features.',
-        'images/surface_duo_2.png', 4.7, 0.05, 1),
+        'images/surface_duo_2.png', 0.0, 0.05, 1),
        ('Xperia 1 III', 6, 2, 1299.00, 'A premium smartphone with advanced camera and audio features.',
-        'images/xperia_1_iii.jpg', 4.6, 0.1, 1),
+        'images/xperia_1_iii.jpg', 0.0, 0.1, 1),
        ('Pixel 6 Pro', 11, 2, 999.00, 'A flagship smartphone with a powerful camera and Googles latest software.',
-        'images/pixel_6_pro.jpg', 4.5, 0.05, 1);
+        'images/pixel_6_pro.jpg', 0.0, 0.05, 1);
 
 -- INSERT statements for Tablets
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('iPad Pro', 1, 3, 799.00, 'A powerful tablet with a large display and Apple Pencil support.',
-        'images/ipad_pro.jpeg', 4.8, 0.1, 1),
+        'images/ipad_pro.jpeg', 0.0, 0.1, 1),
        ('Galaxy Tab S7+', 2, 3, 849.00, 'A premium Android tablet with a large display and S Pen support.',
-        'images/galaxy_tab_s7+.jpg', 4.7, 0.05, 1),
+        'images/galaxy_tab_s7+.jpg', 0.0, 0.05, 1),
        ('Surface Pro 7', 3, 3, 1299.00, 'A versatile Windows tablet with a detachable keyboard and stylus.',
-        'images/surface_pro_7.jpeg', 4.6, 0.1, 1),
+        'images/surface_pro_7.jpeg', 0.0, 0.1, 1),
        ('Yoga Tab 13', 4, 3, 999.00, 'A unique Android tablet with a built-in kickstand and projector.',
-        'images/yoga_tab_13.png', 4.5, 0.05, 1);
+        'images/yoga_tab_13.png', 0.0, 0.05, 1);
 
 -- INSERT statements for TVs
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('LG C1 OLED', 7, 4, 1699.00, 'A premium 4K OLED TV with Dolby Vision and Atmos support.',
-        'images/lg_c1_oled.jpeg', 4.9, 0.1, 1),
+        'images/lg_c1_oled.jpeg', 0.0, 0.1, 1),
        ('Q80A QLED', 2, 4, 1499.00, 'A high-performance 4K QLED TV with Quantum HDR and Alexa built-in.',
-        'images/q80a_qled.jpg', 4.8, 0.1, 1),
+        'images/q80a_qled.jpg', 0.0, 0.1, 1),
        ('X950H LED', 6, 4, 1299.00, 'A high-end 4K LED TV with Dolby Vision and Atmos support.',
-        'images/x950h_led.jpg', 4.7, 0.05, 1),
+        'images/x950h_led.jpg', 0.0, 0.05, 1),
        ('Bravia A8H OLED', 6, 4, 1999.00, 'A premium 4K OLED TV with Sony X1 Ultimate processor.',
-        'images/bravia_a8h_oled.jpg', 4.6, 0.1, 1),
+        'images/bravia_a8h_oled.jpg', 0.0, 0.1, 1),
        ('TCL 6-Series', 12, 4, 699.00, 'A budget-friendly 4K QLED TV with Roku TV built-in.',
-        'images/tcl_6_series.jpg', 4.5, 0.05, 1);
+        'images/tcl_6_series.jpg', 0.0, 0.05, 1);
 
 -- INSERT statements for Headphones
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('AirPods Pro', 1, 5, 249.00, 'Apple premium noise-cancelling earbuds with spatial audio.',
-        'images/airpods_pro.jpeg', 4.9, 0.1, 1),
+        'images/airpods_pro.jpeg', 0.0, 0.1, 1),
        ('Galaxy Buds Pro', 2, 5, 199.00, 'Samsung high-end true wireless earbuds with ANC and 360 Audio.',
-        'images/galaxy_buds_pro.jpg', 4.8, 0.1, 1),
+        'images/galaxy_buds_pro.jpg', 0.0, 0.1, 1),
        ('WH-1000XM4', 6, 5, 349.99, 'Sony flagship noise-cancelling headphones with LDAC and 360 Reality Audio.',
-        'images/wh_1000xm4.jpeg', 4.7, 0.05, 1),
+        'images/wh_1000xm4.jpeg', 0.0, 0.05, 1),
        ('QuietComfort 35 II', 13, 5, 299.00, 'Bose popular noise-cancelling headphones with Alexa built-in.',
-        'images/quietcomfort_35_ii.jpeg', 4.6, 0.1, 1);
+        'images/quietcomfort_35_ii.jpeg', 0.0, 0.1, 1);
 
 -- INSERT statements for Cameras
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('EOS R5', 9, 6, 3899.00, 'Canon high-end full-frame mirrorless camera with 45MP sensor and 8K video.',
-        'images/eos_r5.jpeg', 4.9, 0.1, 1),
+        'images/eos_r5.jpeg', 0.0    , 0.1, 1),
        ('Alpha 1', 6, 6, 6499.00, 'Sony flagship full-frame mirrorless camera with 50MP sensor and 8K video.',
-        'images/alpha_1.jpg', 4.8, 0.1, 1),
+        'images/alpha_1.jpg', 0.0, 0.1, 1),
        ('Z6 II', 10, 6, 1999.95, 'Nikon versatile full-frame mirrorless camera with 24.5MP sensor and 4K video.',
-        'images/z6_ii.jpeg', 4.7, 0.05, 1);
+        'images/z6_ii.jpeg', 0.0, 0.05, 1);
 
 -- INSERT statements for Printers
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('OfficeJet Pro 9025e', 8, 7, 329.99, 'HP smart all-in-one printer with HP Instant Ink and Alexa compatibility.',
-        'images/officejet_pro_9025e.jpeg', 4.9, 0.1, 1),
+        'images/officejet_pro_9025e.jpeg', 0.0, 0.1, 1),
        ('PIXMA TR4520', 9, 7, 99.99, 'Canon affordable all-in-one printer with wireless printing and scanning.',
-        'images/pixma_tr4520.jpeg', 4.8, 0.1, 1),
+        'images/pixma_tr4520.jpeg', 0.0, 0.1, 1),
        ('Color LaserJet Pro MFP M281fdw', 8, 7, 429.00,
         'HP high-performance color laser all-in-one printer with auto duplex printing and scanning.',
-        'images/color_laserjet_pro_mfp_m281fdw.jpeg', 4.6, 0.1, 1);
+        'images/color_laserjet_pro_mfp_m281fdw.jpeg', 0.0, 0.1, 1);
 
 -- INSERT statements for Gaming Consoles
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('PlayStation 5', 6, 8, 499.99,
         'Sony next-generation gaming console with ultra-high-speed SSD and DualSense wireless controller.',
-        'images/playstation_5.jpeg', 4.9, 0.1, 1),
+        'images/playstation_5.jpeg', 0.0, 0.1, 1),
        ('Xbox Series X', 3, 8, 499.99,
         'Microsoft most powerful gaming console with 12 teraflops of processing power and Xbox Wireless Controller.',
-        'images/xbox_series_x.jpeg', 4.8, 0.1, 1);
+        'images/xbox_series_x.jpeg', 0.0, 0.1, 1);
 
 -- INSERT statements for Smart Watches
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('Apple Watch Series 6', 1, 9, 399.00,
         'Apple latest smartwatch with blood oxygen sensor and always-on Retina display.',
-        'images/apple_watch_s6.jpeg', 4.9, 0.1, 1),
+        'images/apple_watch_s6.jpeg', 0.0, 0.1, 1),
        ('Galaxy Watch3', 2, 9, 399.99, 'Samsung premium smartwatch with built-in GPS and ECG monitoring.',
-        'images/galaxy_watch3.jpg', 4.8, 0.1, 1);
+        'images/galaxy_watch3.jpg', 0.0, 0.1, 1);
 
 -- INSERT statements for Smart Home Devices
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('Nest Learning Thermostat', 11, 10, 249.99,
         'Google smart thermostat that learns your schedule and saves energy',
-        'images/nest_learning_thermostat.jpeg', 4.8, 0.1, 1);
+        'images/nest_learning_thermostat.jpeg', 0.0, 0.1, 1);
 
 
 
@@ -326,35 +306,35 @@ VALUES (1, 1, 2, 10.99),
 
 INSERT INTO online_shop.reviews (product_id, client_id, review_title, review_text, review_rating, review_date)
 VALUES (1, 1, 'Great laptop!',
-        'I``ve been using the MacBook Pro for a few weeks now and it``s been fantastic. Fast and reliable.', 4.5,
+        'I``ve been using the MacBook Pro for a few weeks now and it``s been fantastic. Fast and reliable.', 4,
         '2023-03-03'),
        (1, 2, 'Excellent performance',
         'This laptop is definitely worth the investment. It has everything I need and more.', 5, '2023-03-01'),
        (2, 3, 'Great camera!', 'The Galaxy S21 has an amazing camera that takes beautiful photos. I love this phone!',
-        4.8, '2023-03-04'),
+        4, '2023-03-04'),
        (3, 1, 'Good tablet for work',
         'The iPad Air is a great tablet for getting work done on the go. It``s lightweight and has a long battery life.',
-        4.2, '2023-03-02'),
+        4, '2023-03-02'),
        (4, 2, 'Stunning picture quality',
         'This OLED TV has a beautiful picture and great sound. It``s perfect for watching movies or playing games.',
-        4.9, '2023-03-05'),
+        4, '2023-03-05'),
        (5, 3, 'Amazing headphones',
         'These noise-cancelling headphones are worth every penny. They have great sound quality and are very comfortable to wear.',
-        4.7, '2023-03-03'),
+        4, '2023-03-03'),
        (6, 1, 'Best camera I``ve ever used',
         'The Nikon camera is amazing. It takes beautiful photos and is very easy to use. I would definitely recommend it to anyone.',
         5, '2023-03-01'),
        (7, 2, 'Great printer for home use',
-        'This wireless printer from HP is perfect for home use. It``s easy to set up and has great print quality.', 4.3,
+        'This wireless printer from HP is perfect for home use. It``s easy to set up and has great print quality.', 4,
         '2023-03-04'),
        (8, 3, 'Awesome gaming console',
         'The PS5 is the best gaming console on the market. It has amazing graphics and is very fast and responsive.',
-        4.9, '2023-03-02'),
+        4, '2023-03-02'),
        (9, 1, 'Great smartwatch',
-        'The Apple Watch Series 6 is a great smartwatch. It has all the features I need and looks great too.', 4.6,
+        'The Apple Watch Series 6 is a great smartwatch. It has all the features I need and looks great too.', 4,
         '2023-03-05'),
        (10, 2, 'Intelligent thermostat',
         'The Nest thermostat is a great way to control the temperature in your home. It``s very easy to use and has a lot of features.',
-        4.2, '2023-03-03');
+        4, '2023-03-03');
 
 

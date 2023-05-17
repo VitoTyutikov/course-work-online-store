@@ -30,17 +30,17 @@ public class ClientsController {
     public String registerNewUser(@RequestBody ClientsDTO clientsDTO) {
         return clientsService.registerNewUser(clientsDTO);
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/all", method = {RequestMethod.GET})
     public List<ClientsEntity> findAll() {
         return clientsService.findAll();
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN','CLIENT','MANAGER')")
     @GetMapping
     public Optional<ClientsEntity> getUserInfo() {
         String login = getCurrentUserLogin();
-        System.out.println(clientsService.findByClientLogin(login).get().getClientLname());
+//        System.out.println(clientsService.findByClientLogin(login).get().getClientLname());
         return clientsService.findByClientLogin(login);
     }
     @PreAuthorize("hasRole('ADMIN')")

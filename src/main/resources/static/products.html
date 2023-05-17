@@ -1,59 +1,84 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Products Search</title>
-    <style>
-        #category-label, #category-select, #manufacturer-label, #manufacturer-select {
-            display: inline-block;
-        }
-        img {
-            /*width: 200px;*/
-            height: 150px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form id="search-form">
-    <label for="product-name">Product Name:</label>
-    <input type="text" id="product-name" name="productName"><br>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Online Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
 
-    <label for="price-from">Price From:</label>
-    <input type="number" id="price-from" name="priceFrom"><br>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clients-form.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders.html">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user.html">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
 
-    <label for="price-to">Price To:</label>
-    <input type="number" id="price-to" name="priceTo"><br>
 
-    <label id='category-label'>Select a category:</label>
-    <div id="category-select"></div>
-    <br/>
 
-    <label id="manufacturer-label">Manufacturer Name:</label>
-    <div id="manufacturer-select"></div>
-    <br/>
-    <button type="submit">Search</button>
-</form>
+<div class="container">
+    <h1>Product Search</h1>
+    <form id="search-form">
+        <div class="form-group">
+            <label for="product-name">Product Name:</label>
+            <input type="text" class="form-control" id="product-name" name="productName">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="price-from">Price From:</label>
+                <input type="number" class="form-control" id="price-from" name="priceFrom">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="price-to">Price To:</label>
+                <input type="number" class="form-control" id="price-to" name="priceTo">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category-name">Select a category:</label>
+            <select class="form-control" id="category-name" name="categoryName">
+                <option value="">Choose category</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="manufacturer-name">Manufacturer Name:</label>
+            <select class="form-control" id="manufacturer-name" name="manufacturerName">
+                <option value="">Choose manufacturer</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <div id="products-container" class="row"></div>
+</div>
 
-<table id="products-table">
-    <thead>
-    <tr>
-        <th>Product Name</th>
-        <th>Manufacturer Name</th>
-        <th>Category Name</th>
-        <th>Product Price</th>
-        <th>Product Description</th>
-        <th data-img="path/to/image.jpg"></th>
-        <th>Product Rating</th>
-<!--        <th>Product Discount</th>-->
-<!--        <th>Product Is Active</th>-->
-
-    </tr>
-    </thead>
-    <tbody id="products-body">
-    </tbody>
-</table>
-<!--<img src="images/apple_watch_s6.jpeg" alt="">-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/products.js"></script>
+
 </body>
 </html>

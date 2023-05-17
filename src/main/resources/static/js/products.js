@@ -3,19 +3,14 @@ function renderCategoriesSelect() {
     fetch('http://localhost:8080/categories')
         .then(response => response.json())
         .then(categories => {
-            const select = document.createElement('select');
-            select.id = 'category-name';
-            const defaultOption = document.createElement('option');
-            defaultOption.textContent = 'Choose category';
-            defaultOption.value = '';
-            select.appendChild(defaultOption);
+            const select = document.getElementById('category-name');
+            select.innerHTML = '<option value="">Choose category</option>';
             categories.forEach(category => {
                 const option = document.createElement('option');
                 option.value = category.categoryName;
                 option.textContent = category.categoryName;
                 select.appendChild(option);
             });
-            document.getElementById('category-select').appendChild(select);
         });
 }
 
@@ -24,80 +19,123 @@ function renderManufacturersSelect() {
     fetch('http://localhost:8080/manufacturers')
         .then(response => response.json())
         .then(manufacturers => {
-            const select = document.createElement('select');
-            select.id = 'manufacturer-name';
-            const defaultOption = document.createElement('option');
-            defaultOption.textContent = 'Choose manufacturer';
-            select.appendChild(defaultOption);
-            defaultOption.value = '';
+            const select = document.getElementById('manufacturer-name');
+            select.innerHTML = '<option value="">Choose manufacturer</option>';
             manufacturers.forEach(manufacturer => {
                 const option = document.createElement('option');
                 option.value = manufacturer.manufacturerName;
                 option.textContent = manufacturer.manufacturerName;
                 select.appendChild(option);
             });
-            document.getElementById('manufacturer-select').appendChild(select);
         });
 }
 
-// Fetches and renders the products table
-function renderProductsTable(url) {
-    const productsBody = $('#products-body');
+// Fetches and renders the products container
+function renderProductsContainer(url) {
+    const productsContainer = document.getElementById('products-container');
+    productsContainer.innerHTML = ''; // Clear existing products
 
     fetch(url)
-        .then((response) => {
+        .then(response => {
             if (!response.ok)
-                alert("Unable to connect to server | HTTP Error: ${response.status}");
+                throw new Error(`Unable to connect to server | HTTP Error: ${response.status}`);
             return response.json();
         })
-        .then((json) => {
-            productsBody.empty(); // Удаляем уже отображенные товары
-
-            for (const product of json) {
-                var row = $('<tr>');
-
-                var td = document.createElement('td');
-                var e = document.createElement('a');
-                e.href = 'http://localhost:8080/product/' + product.productId;
-                e.title = product.productName;
-                e.appendChild(document.createTextNode(product.productName));
-                td.append(e);
-                row.append(td);
-
-                row.append($('<td>').text(product.manufacturerName));
-                row.append($('<td>').text(product.categoriesByCategoryId.categoryName));
-                row.append($('<td>').text(product.productPrice));
-                row.append($('<td>').text(product.productDescription));
-
-                const imgPath = product.productImage;
-                const img = document.createElement("img");
-                img.setAttribute("src", imgPath);
-                row.append(img);
-
-                row.append($('<td>').text(product.productRating));
-                // row.append($('<td>').text(product.productDiscount));
-                // row.append($('<td>').text(product.productIsActive));
-                productsBody.append(row);
-            }
+        .then(products => {
+            products.forEach(product => {
+                const productCard = createProductCard(product);
+                productsContainer.appendChild(productCard);
+            });
+        })
+        .catch(error => {
+            alert(error.message);
         });
 }
 
-// Initializes the page
-function initializePage() {
-    renderCategoriesSelect();
-    renderManufacturersSelect();
-    renderProductsTable('http://localhost:8080/products');
+// Creates a product card element
+function createProductCard(product) {
+    const card = document.createElement('div');
+    card.className = 'col-md-4 mb-4';
+
+    const img = document.createElement('img');
+    img.src = product.productImage;
+    img.className = 'card-img-top';
+    img.alt = product.productName;
+    card.appendChild(img);
+
+    const cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+
+    const title = document.createElement('h5');
+    title.className = 'card-title';
+    title.textContent = product.productName;
+    const link = document.createElement('a');
+    link.href = 'http://localhost:8080/product/' + product.productId;
+    link.appendChild(title);
+    cardBody.appendChild(link);
+
+    const manufacturer = document.createElement('p');
+    manufacturer.className = 'card-text';
+    manufacturer.textContent = `Manufacturer: ${product.manufacturerName}`;
+    cardBody.appendChild(manufacturer);
+
+    const category = document.createElement('p');
+    category.className = 'card-text';
+    category.textContent = `Category: ${product.categoriesByCategoryId.categoryName}`;
+    cardBody.appendChild(category);
+
+    const price = document.createElement('p');
+    price.className = 'card-text';
+    price.textContent = `Price: $${product.productPrice}`;
+    cardBody.appendChild(price);
+
+    const description = document.createElement('p');
+    description.className = 'card-text';
+    description.textContent = product.productDescription;
+    cardBody.appendChild(description);
+
+    const rating = document.createElement('p');
+    rating.className = 'card-text';
+    rating.textContent = `Rating: ${Math.round(product.productRating)}`;
+    cardBody.appendChild(rating);
+
+
+    const form = document.createElement('form');
+    form.action = '/cart/add/' + product.productId;
+    form.method = 'post';
+
+    const submitBtn = document.createElement('input');
+    submitBtn.type = 'submit';
+    submitBtn.value = 'Add to Cart';
+    submitBtn.className = 'btn btn-primary';
+
+    form.appendChild(submitBtn);
+    cardBody.appendChild(form);
+
+    card.appendChild(cardBody);
+
+    return card;
 }
+
 
 // Handles the search form submission
 function handleSearchFormSubmit(event) {
     event.preventDefault();
-    var url;
-    var productName = $('#product-name').val();
-    var priceFrom = $('#price-from').val();
-    var priceTo = $('#price-to').val();
-    var categoryName = $('#category-name').val();
-    var manufacturerName = $('#manufacturer-name').val();
+    const productName = document.getElementById('product-name').value;
+    const priceFrom = document.getElementById('price-from').value;
+    const priceTo = document.getElementById('price-to').value;
+    const categoryName = document.getElementById('category-name').value;
+    const manufacturerName = document.getElementById('manufacturer-name').value;
+
+    let url = 'http://localhost:8080/products';
+    // const params = [];
+
+    // var url;
+    // var productName = $('#product-name').val();
+    // var priceFrom = $('#price-from').val();
+    // var priceTo = $('#price-to').val();
+    // var categoryName = $('#category-name').val();
+    // var manufacturerName = $('#manufacturer-name').val();
     if (!productName && !priceFrom && !priceTo && !categoryName && !manufacturerName) {
         url = "http://localhost:8080/products";
     } else if (categoryName === '') {
@@ -106,16 +144,17 @@ function handleSearchFormSubmit(event) {
     } else {
         url = 'http://localhost:8080/products/' + categoryName + '?productName=' + productName + '&priceFrom=' + priceFrom + '&priceTo=' + priceTo + '&manufacturersName=' + encodeURIComponent(manufacturerName);
     }
-    renderProductsTable(url);
+
+
+    renderProductsContainer(url);
 }
 
-window.addEventListener('load', function (){
-    initializePage();
-});
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function () {
+    renderCategoriesSelect();
+    renderManufacturersSelect();
+    renderProductsContainer('http://localhost:8080/products');
 
-
-$(document).ready(function () {
-    $('#search-form').submit(function (event){
-        handleSearchFormSubmit(event);
-    });
+    const searchForm = document.getElementById('search-form');
+    searchForm.addEventListener('submit', handleSearchFormSubmit);
 });

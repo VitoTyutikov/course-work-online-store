@@ -1,41 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reviews</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<table>
-  <thead>
-  <tr>
-    <th>Client name</th>
-    <th>Client email</th>
-    <th>reviewDate</th>
-    <th>reviewTitle</th>
-    <th>reviewText</th>
-    <th>reviewRating</th>
-  </tr>
-  </thead>
-  <tbody>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Online Shop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/products.html">Menu</a>
+                </li>
 
-  <th:block th:each="review : ${reviews}">
-    <tr>
-      <td th:text="${review.clientByClientId.getClientFname()}"></td>
-      <td th:text="${review.clientByClientId.getClientEmail()}"></td>
-      <td th:text="${review.reviewDate}"></td>
-      <td th:text="${review.reviewTitle}"></td>
-      <td th:text="${review.reviewText}"></td>
-      <td th:text="${review.reviewRating}"></td>
-    </tr>
-  </th:block>
-  </tbody>
-</table>
-<form th:action="@{'/reviews/add/'+${reviews.get(0).productId}}" th:object="${review}" method="post">
-  Title<input type="text" th:field="*{reviewTitle}"/>
-  Text<input type="text" th:field="*{reviewText}"/>
-  reviewRating<input type="number" min = 0 max = 5 th:field="*{reviewRating}"/>
-  <input type="submit" value="Submit" /> <input type="reset" value="Reset" />
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clients-form.html">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders.html">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user.html">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
 
-</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Reviews</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="review-list">
+                <th:block th:each="review : ${reviews}">
+                    <div class="review border p-3 mb-4">
+                        <div class="review-header d-flex justify-content-between align-items-center">
+                            <div>
+                                <h3 class="review-rating mb-0" th:text="${review.reviewRating}"></h3>
+                                <h3 class="review-title" th:text="${review.clientByClientId.getClientFname()}"></h3>
+                                <p class="review-subtitle border-bottom pb-2" th:text="${review.clientByClientId.getClientEmail()}"></p>
+                            </div>
+                            <p class="review-date mb-0" th:text="${review.reviewDate}"></p>
+                        </div>
+                        <div class="review-content">
+                            <h4 class="review-heading border-bottom pb-2" th:text="${review.reviewTitle}"></h4>
+                            <p class="review-text border-bottom pb-2" th:text="${review.reviewText}"></p>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Add Review</h2>
+            <form th:action="@{'/reviews/add/'+${productId}}" th:object="${review}" method="post">
+                <div class="form-group">
+                    <label for="reviewTitle">Title</label>
+                    <input type="text" class="form-control" id="reviewTitle" th:field="*{reviewTitle}" required>
+                </div>
+                <div class="form-group">
+                    <label for="reviewText">Text</label>
+                    <input type="text" class="form-control" id="reviewText" th:field="*{reviewText}" required>
+                </div>
+                <div class="form-group">
+                    <label for="reviewRating">Rating</label>
+                    <input type="number" class="form-control" id="reviewRating" min="1" max="5" th:field="*{reviewRating}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

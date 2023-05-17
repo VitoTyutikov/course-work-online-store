@@ -31,6 +31,7 @@ public class ReviewsController {
         List<ReviewsEntity> reviews = reviewsService.findByProductId(productId);
         model.addAttribute("reviews", reviews);
         model.addAttribute("review", new ReviewsDTO());
+        model.addAttribute("productId",productId);
         return "reviews";
     }
 
@@ -57,4 +58,6 @@ public class ReviewsController {
 //            return "reviews";
         }
     }
+
+
 }

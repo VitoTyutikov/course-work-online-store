@@ -18,10 +18,6 @@ fetch("http://localhost:8080/orders")
             clientId.textContent = order.clientId;
             row.appendChild(clientId);
 
-            // const storeId = document.createElement("td");
-            // storeId.textContent = order.storeId;
-            // row.appendChild(storeId);
-
             const orderDate = document.createElement("td");
             orderDate.textContent = order.orderDate;
             row.appendChild(orderDate);

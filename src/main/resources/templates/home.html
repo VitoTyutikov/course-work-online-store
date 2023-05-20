@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,10 +40,61 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/user.html">Profile</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
             </ul>
         </div>
     </nav>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/airpods_pro.jpeg" alt="Product 1">
+                <div class="card-body">
+                    <h4 class="card-title"><a href="/product/20">AirPods Pro</a></h4>
+                    <h5>249.0</h5>
+                    <p class="card-text">Apple premium noise-cancelling earbuds with spatial audio.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="/cart/add/20" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/alpha_1.jpg" alt="Product 2">
+                <div class="card-body">
+                    <h4 class="card-title"><a href="/product/25">Alpha 1</a></h4>
+                    <h5>6499.0</h5>
+                    <p class="card-text">Sony flagship full-frame mirrorless camera with 50MP sensor and 8K video.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="/cart/add/25" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <img class="card-img-top" src="images/playstation_5.jpeg" alt="Product 3">
+                <div class="card-body">
+                    <h4 class="card-title"><a href="/product/30">PlayStation 5</a></h4>
+                    <h5>499.99</h5>
+                    <p class="card-text">Sony next-generation gaming console with ultra-high-speed SSD and DualSense
+                        wireless controller.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="/cart/add/30" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
+
 </html>

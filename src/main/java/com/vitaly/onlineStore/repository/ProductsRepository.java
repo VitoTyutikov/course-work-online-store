@@ -11,11 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ProductsRepository extends JpaRepository<ProductsEntity, Integer> {
-
-
     List<ProductsEntity> findByProductNameStartsWithIgnoreCase(String productName);
-
-    List<ProductsEntity> findByProductPriceBetween(Double priceFrom, Double priceTo);
 
     List<ProductsEntity> findByProductPriceGreaterThanEqual(Double priceFrom);
 
@@ -34,6 +30,5 @@ public interface ProductsRepository extends JpaRepository<ProductsEntity, Intege
     @Modifying
     @Query("update ProductsEntity p set p.productRating = :rating where p.productId = :id")
     void updateProductRating(@Param("id") Integer id, @Param("rating") Double rating);
-
 
 }

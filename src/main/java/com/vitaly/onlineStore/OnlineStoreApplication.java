@@ -1,9 +1,7 @@
 package com.vitaly.onlineStore;
 
-import com.vitaly.onlineStore.entity.ClientsEntity;
 import com.vitaly.onlineStore.service.ClientsService;
 import com.vitaly.onlineStore.service.ReviewsService;
-import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +13,7 @@ public class OnlineStoreApplication {
     public OnlineStoreApplication(ReviewsService reviewsService) {
         this.reviewsService = reviewsService;
     }
+
     private ClientsService clientsService;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 

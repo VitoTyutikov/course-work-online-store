@@ -1,7 +1,5 @@
 package com.vitaly.onlineStore.dto;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

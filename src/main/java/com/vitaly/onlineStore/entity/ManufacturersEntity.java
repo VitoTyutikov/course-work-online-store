@@ -20,7 +20,4 @@ public class ManufacturersEntity {
     @Basic
     @Column(name = "manufacturer_name", nullable = false)
     private String manufacturerName;
-//    @OneToMany(mappedBy = "manufacturersByManufacturerId")
-//    private List<ProductsEntity> productsByManufacturerId;
-
 }

@@ -35,31 +35,19 @@ public class ProductsEntity {
     @Basic
     @Column(name = "product_image")
     private String productImage;
-
     @Basic
     @Column(name = "product_rating")
     private Double productRating;
-
     @Basic
     @Column(name = "product_discount")
     private Integer productDiscount;
-
     @Basic
     @Column(name = "product_is_active")
     private Integer productIsActive;
-
-    //    @OneToMany(mappedBy = "productsByProductId")
-//    private List<DeliveriesEntity> deliveriesByProductId;
-//    @OneToMany(mappedBy = "productsByProductId")
-//    private List<OrderItemsEntity> orderItemsByProductId;
     @ManyToOne
     @JoinColumn(name = "manufacturer_id", referencedColumnName = "manufacturer_id", insertable = false, updatable = false)
     private ManufacturersEntity manufacturersByManufacturerId;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id", insertable = false, updatable = false)
     private CategoriesEntity categoriesByCategoryId;
-
-    public String getManufacturerName() {
-        return manufacturersByManufacturerId.getManufacturerName();
-    }
 }

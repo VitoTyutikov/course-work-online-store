@@ -31,7 +31,7 @@ public class CartEntity {
     private Integer countProducts;
 
     @ManyToOne
-    @JoinColumn(name = "client_id",referencedColumnName = "client_id", insertable = false,updatable = false,nullable = false)
+    @JoinColumn(name = "client_id", referencedColumnName = "client_id", insertable = false, updatable = false, nullable = false)
     private ClientsEntity clientByClientId;
 
     @ManyToOne

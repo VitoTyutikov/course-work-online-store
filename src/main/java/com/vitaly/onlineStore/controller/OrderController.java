@@ -20,7 +20,7 @@ public class OrderController {
     }
 
     @GetMapping("/{orderId}")
-    public String findByOrderId(@PathVariable Integer orderId, Model model){
+    public String findByOrderId(@PathVariable Integer orderId, Model model) {
         List<OrderItemsEntity> orderItems = orderItemsService.findByOrderId(orderId);
         model.addAttribute("orderItems", orderItems);
         return "order";

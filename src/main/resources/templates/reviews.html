@@ -38,6 +38,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/user.html">Profile</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -59,7 +62,8 @@
                             <div>
                                 <h3 class="review-rating mb-0" th:text="${review.reviewRating}"></h3>
                                 <h3 class="review-title" th:text="${review.clientByClientId.getClientFname()}"></h3>
-                                <p class="review-subtitle border-bottom pb-2" th:text="${review.clientByClientId.getClientEmail()}"></p>
+                                <p class="review-subtitle border-bottom pb-2"
+                                   th:text="${review.clientByClientId.getClientEmail()}"></p>
                             </div>
                             <p class="review-date mb-0" th:text="${review.reviewDate}"></p>
                         </div>
@@ -73,9 +77,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 <div class="container">
@@ -93,7 +94,8 @@
                 </div>
                 <div class="form-group">
                     <label for="reviewRating">Rating</label>
-                    <input type="number" class="form-control" id="reviewRating" min="1" max="5" th:field="*{reviewRating}" required>
+                    <input type="number" class="form-control" id="reviewRating" min="1" max="5"
+                           th:field="*{reviewRating}" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-secondary">Reset</button>

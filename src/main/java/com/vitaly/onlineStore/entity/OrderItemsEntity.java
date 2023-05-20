@@ -14,11 +14,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderItemsEntity {
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "order_id", nullable = false)
     private Integer orderId;
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "product_id", nullable = false)
     private Integer productId;
@@ -38,7 +38,8 @@ public class OrderItemsEntity {
     public OrderItemsPK getId() {
         return new OrderItemsPK(this.orderId, this.productId);
     }
-    public void setId(Integer orderId, Integer productId){
+
+    public void setId(Integer orderId, Integer productId) {
         this.orderId = orderId;
         this.productId = productId;
     }

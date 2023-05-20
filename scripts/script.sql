@@ -33,22 +33,6 @@ CREATE TABLE online_shop.products
     FOREIGN KEY (category_id) REFERENCES online_shop.categories (category_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- CREATE TABLE online_shop.stores
--- (
---     store_id      SERIAL PRIMARY KEY,
---     store_name    TEXT NOT NULL,
---     store_address TEXT
--- );
--- CREATE TABLE online_shop.deliveries
--- (
---     product_id     INT  NOT NULL,
--- --     store_id       INT  NOT NULL,
---     delivery_date  DATE NOT NULL,
---     products_count INT  NOT NULL,
---     PRIMARY KEY (product_id, delivery_date),
---     FOREIGN KEY (product_id) REFERENCES online_shop.products (product_id) ON UPDATE CASCADE ON DELETE CASCADE
--- --     FOREIGN KEY (store_id) REFERENCES online_shop.stores (store_id) ON UPDATE CASCADE ON DELETE CASCADE
--- );
 CREATE TABLE online_shop.clients
 (
     client_id           SERIAL PRIMARY KEY,
@@ -74,7 +58,6 @@ CREATE TABLE online_shop.orders
     order_date   DATE NOT NULL,
     order_status TEXT,
     FOREIGN KEY (client_id) REFERENCES online_shop.clients (client_id) ON UPDATE CASCADE ON DELETE CASCADE
---     FOREIGN KEY (store_id) REFERENCES online_shop.stores (store_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE online_shop.order_items
@@ -211,7 +194,7 @@ VALUES ('AirPods Pro', 1, 5, 249.00, 'Apple premium noise-cancelling earbuds wit
 INSERT INTO online_shop.products (product_name, manufacturer_id, category_id, product_price, product_description,
                                   product_image, product_rating, product_discount, product_is_active)
 VALUES ('EOS R5', 9, 6, 3899.00, 'Canon high-end full-frame mirrorless camera with 45MP sensor and 8K video.',
-        'images/eos_r5.jpeg', 0.0    , 0.1, 1),
+        'images/eos_r5.jpeg', 0.0, 0.1, 1),
        ('Alpha 1', 6, 6, 6499.00, 'Sony flagship full-frame mirrorless camera with 50MP sensor and 8K video.',
         'images/alpha_1.jpg', 0.0, 0.1, 1),
        ('Z6 II', 10, 6, 1999.95, 'Nikon versatile full-frame mirrorless camera with 24.5MP sensor and 4K video.',

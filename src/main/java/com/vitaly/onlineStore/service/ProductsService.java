@@ -5,6 +5,7 @@ import com.vitaly.onlineStore.repository.ProductsRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +21,35 @@ public class ProductsService {
         return productsRepository.findAll();
     }
 
+    public List<ProductsEntity> findByFilter(String category, String productName, Double priceFrom, Double priceTo, List<String> manufacturersName) {
+        List<ProductsEntity> byCategory = this.findByCategoryName(category);
+        List<ProductsEntity> result = new ArrayList<>(byCategory);
+
+        //Filter by product name
+        if (productName != null && !productName.isEmpty()) {
+            List<ProductsEntity> productsByName = this.findByProductNameStartsWithIgnoreCase(productName);
+            result.retainAll(productsByName);
+        }
+        // Filter by price range
+        if (priceFrom != null) {
+            result.retainAll(this.findByProductPriceGreaterThanEqual(priceFrom));
+        }
+        if (priceTo != null) {
+            result.retainAll(this.findByProductPriceLessThanEqual(priceTo));
+        }
+        //Filter by manufacturer name
+        if (manufacturersName != null && !manufacturersName.isEmpty()) {
+            List<ProductsEntity> productsByManufacturer = new ArrayList<>();
+            for (String manufacturer : manufacturersName) {
+                productsByManufacturer.addAll(this.findByManufacturerName(manufacturer));
+            }
+            result.retainAll(productsByManufacturer);
+        }
+        return result;
+    }
+
     public Optional<ProductsEntity> getById(Integer id) {
-        return productsRepository.findById(id);//can use return productsRepository.findById(id).orElseThrow() instead ProductsEntity
+        return productsRepository.findById(id);
     }
 
     public ProductsEntity save(ProductsEntity productsEntity) {
@@ -36,7 +64,6 @@ public class ProductsService {
     public List<ProductsEntity> findByProductNameStartsWithIgnoreCase(String productName) {
         return productsRepository.findByProductNameStartsWithIgnoreCase(productName);
     }
-
 
     public List<ProductsEntity> findByManufacturerId(Integer manufacturerId) {
         return productsRepository.findByManufacturerId(manufacturerId);
@@ -61,13 +88,13 @@ public class ProductsService {
     public List<ProductsEntity> findByCategoryName(String categoryName) {
         return productsRepository.findByCategoryName(categoryName);
     }
-    public Optional<ProductsEntity> findByProductId(Integer id){
+
+    public Optional<ProductsEntity> findByProductId(Integer id) {
         return productsRepository.findById(id);
     }
+
     @Transactional
-    public void updateRating(Integer productId,Double rating){
-//        ProductsEntity product = productsRepository.findById(productId).get();
-//        product.setProductRating(rating);
-        productsRepository.updateProductRating(productId,rating);
+    public void updateRating(Integer productId, Double rating) {
+        productsRepository.updateProductRating(productId, rating);
     }
 }

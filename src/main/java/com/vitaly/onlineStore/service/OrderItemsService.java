@@ -21,7 +21,7 @@ public class OrderItemsService {
         return orderItemsRepository.findAll();
     }
 
-    public List<OrderItemsEntity> findByOrderId(Integer orderId){
+    public List<OrderItemsEntity> findByOrderId(Integer orderId) {
         return orderItemsRepository.findByOrderId(orderId);
     }
 

@@ -64,7 +64,7 @@ public class ClientsService {
         int exists = this.save(client);
         if (exists == -1)
             return "User With this login exists";
-        return "redirect:/";//TODO change it
+        return "redirect:/";
     }
 
     public Optional<ClientsEntity> findClientIdByClientLogin(String clientLogin) {

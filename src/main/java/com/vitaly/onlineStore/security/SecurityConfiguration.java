@@ -5,12 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
@@ -21,24 +19,22 @@ public class SecurityConfiguration {
         return new MyUserDetalisService();
     }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        //TODO add lists with urls for every role
-        return http.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers( "/products","/user/registration", "/**").permitAll()
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers("/products/delete", "/products/delete/**", "/products/add", "/products/add/**","/user/**", "/orders/**", "/orders","/**/*.html","/**/*.js")
-                .permitAll()
-//                .hasAnyRole("ADMIN", "MANUFACTURER", "CLIENT")
-                .and()
-                .formLogin()
-                .and()
-                .build();
-
-    }
-
+    //    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        //TODO add lists with urls for every role
+//        return http.csrf().disable()
+//                .authorizeHttpRequests()
+//                .requestMatchers( "/products","/user/registration", "/**").permitAll()
+//                .and()
+//                .authorizeHttpRequests()
+//                .requestMatchers("/products/delete", "/products/delete/**", "/products/add", "/products/add/**","/user/**", "/orders/**", "/orders","/**/*.html","/**/*.js")
+//                .permitAll()
+//                .and()
+//                .formLogin()
+//                .and()
+//                .build();
+//
+//    }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

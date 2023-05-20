@@ -33,10 +33,11 @@ public class OrdersService {
         ordersRepository.deleteById(id);
     }
 
-    public List<OrdersEntity> findByClientId(Integer clientId){
+    public List<OrdersEntity> findByClientId(Integer clientId) {
         return ordersRepository.findByClientId(clientId);
     }
-    public Optional<OrdersEntity> findOrder(Integer orderId){
+
+    public Optional<OrdersEntity> findOrder(Integer orderId) {
         return ordersRepository.findById(orderId);
     }
 }

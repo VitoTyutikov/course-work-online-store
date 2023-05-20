@@ -20,7 +20,4 @@ public class CategoriesEntity {
     @Basic
     @Column(name = "category_name", nullable = false)
     private String categoryName;
-
-//    @OneToMany(mappedBy = "categoriesByCategoryId")
-//    private List<ProductsEntity> productsByCategoryId;
 }

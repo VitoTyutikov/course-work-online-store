@@ -14,17 +14,17 @@ form.addEventListener('submit', async (event) => {
         },
         body: JSON.stringify(clientsDTO)
     })
-        .then(()=>{
+        .then(() => {
             window.location.replace("/login");
         })
-        .catch((error)=>{
+        .catch((error) => {
             alert(error);
         })
     const result = await response.json();
     console.log(result);
 
-    const submitButton=document.getElementById("submit-button");
-    submitButton.onclick=()=>{
+    const submitButton = document.getElementById("submit-button");
+    submitButton.onclick = () => {
         window.location.replace("/login");
     }
 });

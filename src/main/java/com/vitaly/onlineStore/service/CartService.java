@@ -14,28 +14,36 @@ public class CartService {
     public CartService(CartRepository cartService) {
         this.cartRepository = cartService;
     }
-    public List<CartEntity> findAll(){
+
+    public List<CartEntity> findAll() {
         return cartRepository.findAll();
     }
-    public CartEntity findById(Integer id){
+
+    public CartEntity findById(Integer id) {
         return cartRepository.findById(id).orElseThrow();
     }
-    public CartEntity save(CartEntity cartEntity){
+
+    public CartEntity save(CartEntity cartEntity) {
         return cartRepository.save(cartEntity);
     }
-    public List<CartEntity> findByClientId(Integer clientId){
+
+    public List<CartEntity> findByClientId(Integer clientId) {
         return cartRepository.findByClientId(clientId);
     }
-    public void deleteById(Integer id){
+
+    public void deleteById(Integer id) {
         cartRepository.deleteById(id);
     }
-    public Optional<CartEntity> findByClientIdAndProductId(Integer clientId, Integer productId){
-        return cartRepository.findByClientIdAndProductId(clientId,productId);
+
+    public Optional<CartEntity> findByClientIdAndProductId(Integer clientId, Integer productId) {
+        return cartRepository.findByClientIdAndProductId(clientId, productId);
     }
-    public void delete(CartEntity cartEntity){
+
+    public void delete(CartEntity cartEntity) {
         cartRepository.delete(cartEntity);
     }
-    public void deleteAll(List<CartEntity> cartEntities){
+
+    public void deleteAll(List<CartEntity> cartEntities) {
         cartRepository.deleteAll(cartEntities);
     }
 

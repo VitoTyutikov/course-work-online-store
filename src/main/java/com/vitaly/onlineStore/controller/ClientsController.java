@@ -16,7 +16,6 @@ import java.util.Optional;
 public class ClientsController {
     private final ClientsService clientsService;
 
-
     public ClientsController(ClientsService clientsService) {
         this.clientsService = clientsService;
     }
@@ -30,6 +29,7 @@ public class ClientsController {
     public String registerNewUser(@RequestBody ClientsDTO clientsDTO) {
         return clientsService.registerNewUser(clientsDTO);
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/all", method = {RequestMethod.GET})
     public List<ClientsEntity> findAll() {
@@ -40,9 +40,9 @@ public class ClientsController {
     @GetMapping
     public Optional<ClientsEntity> getUserInfo() {
         String login = getCurrentUserLogin();
-//        System.out.println(clientsService.findByClientLogin(login).get().getClientLname());
         return clientsService.findByClientLogin(login);
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public void deleteById(@PathVariable Integer id) {

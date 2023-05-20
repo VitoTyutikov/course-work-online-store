@@ -24,11 +24,9 @@ public class ProductController {
         Optional<ProductsEntity> product = productsService.getById(id);
         if (product.isPresent()) {
             model.addAttribute("product", product.get());
-
             return "product";
         } else {
             return "error";
         }
-
     }
 }

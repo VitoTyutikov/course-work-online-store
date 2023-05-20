@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,12 +33,27 @@
                     <a class="nav-link" href="/cart">Cart</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/orders.html">Orders</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/user.html">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/orders.html">Orders</a>
+                    <a class="nav-link" href="/logout">Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3 text-center">
+            <h1 class="display-4">Oops! Something went wrong.</h1>
+            <p class="lead">We apologize for the inconvenience. An error occurred while processing your request.</p>
+            <p>Please try again later or contact support for assistance.</p>
+            <a href="/" class="btn btn-primary">Go to Homepage</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

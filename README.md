@@ -22,13 +22,4 @@ The project utilizes the following technologies and tools:
 
 • Postman: An API testing tool that allows sending HTTP requests to the application and verifying the responses.
 
-## Running the Project
 
-To run the project locally, follow these steps:
-
-1. Ensure that Java and PostgreSQL are installed on your system.
-2. Clone the repository to your local machine.
-3. Create a PostgreSQL database and configure the corresponding connection parameters in the application.properties file.
-4. Build the project using Maven: mvn clean install.
-5. Run the application: mvn spring-boot:run.
-6. Open a web browser and navigate to http://localhost:8080 to access the online electronics store.

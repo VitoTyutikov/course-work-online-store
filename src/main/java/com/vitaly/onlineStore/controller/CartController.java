@@ -1,6 +1,5 @@
 package com.vitaly.onlineStore.controller;
 
-
 import com.vitaly.onlineStore.entity.*;
 import com.vitaly.onlineStore.service.*;
 import jakarta.transaction.Transactional;
@@ -25,7 +24,8 @@ public class CartController {
     private final ClientsService clientsService;
 
     @Autowired
-    public CartController(OrdersService ordersService, OrderItemsService orderItemsService, CartService cartService, ProductsService productsService, ClientsService clientsService) {
+    public CartController(OrdersService ordersService, OrderItemsService orderItemsService, CartService cartService,
+            ProductsService productsService, ClientsService clientsService) {
         this.ordersService = ordersService;
         this.orderItemsService = orderItemsService;
         this.cartService = cartService;
@@ -44,14 +44,14 @@ public class CartController {
 
     @PreAuthorize(value = "hasAnyRole('ADMIN','CLIENT','MANAGER')")
     @Transactional
-    @RequestMapping(value = "/add/{productId}", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/add/{productId}", method = { RequestMethod.GET, RequestMethod.POST })
     public String addToCart(Authentication authentication, @PathVariable Integer productId, Model model) {
         Optional<ProductsEntity> product = productsService.findByProductId(productId);
         Optional<ClientsEntity> user = clientsService.findByClientLogin(authentication.getName());
         Integer clientId = user.get().getClientId();
         if (product.isEmpty()) {
             model.addAttribute("message", "Product not found");
-            return "error";//TODO: add ERROR page
+            return "error";
         }
         Optional<CartEntity> cartItem = cartService.findByClientIdAndProductId(clientId, productId);
         CartEntity cartEntity = new CartEntity();
@@ -59,7 +59,7 @@ public class CartController {
             cartEntity = cartItem.get();
             cartEntity.setCountProducts(cartItem.get().getCountProducts() + 1);
         } else {
-//            cartEntity = new CartEntity();
+            // cartEntity = new CartEntity();
             cartEntity.setClientId(clientId);
             cartEntity.setProductId(product.get().getProductId());
             cartEntity.setCountProducts(1);
@@ -70,8 +70,9 @@ public class CartController {
 
     @PreAuthorize(value = "hasAnyRole('ADMIN','CLIENT','MANAGER')")
     @Transactional
-    @RequestMapping(value = "/remove/{productId}", method = {RequestMethod.GET, RequestMethod.DELETE})
-    public String removeFromCart(Authentication authentication, @PathVariable Integer productId, @RequestParam(required = false) Integer quantity) {
+    @RequestMapping(value = "/remove/{productId}", method = { RequestMethod.GET, RequestMethod.DELETE })
+    public String removeFromCart(Authentication authentication, @PathVariable Integer productId,
+            @RequestParam(required = false) Integer quantity) {
         if (quantity == null) {
             quantity = 1;
         }
@@ -94,7 +95,7 @@ public class CartController {
 
     @PreAuthorize(value = "hasAnyRole('ADMIN','CLIENT','MANAGER')")
     @Transactional
-    @RequestMapping(value = "/confirm", method = {RequestMethod.POST})
+    @RequestMapping(value = "/confirm", method = { RequestMethod.POST, RequestMethod.GET })
     public String confirmCart(Authentication authentication) {
         Optional<ClientsEntity> client = clientsService.findByClientLogin(authentication.getName());
         Integer clientId = client.get().getClientId();

@@ -102,7 +102,6 @@ function createProductCard(product) {
 
     const form = document.createElement('form');
     form.action = '/cart/add/' + product.productId;
-    form.method = 'post';
 
     const submitBtn = document.createElement('input');
     submitBtn.type = 'submit';

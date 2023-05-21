@@ -1,6 +1,6 @@
-# Online Electronics Store
+# Online shop course work
 
-This repository contains the source code of an online electronics store, a web application developed using Java and the Spring framework.
+This repository contains the source code of an my course work - online electronics shop, a web application developed using Java and the Spring framework.
 
 ## About the Project
 

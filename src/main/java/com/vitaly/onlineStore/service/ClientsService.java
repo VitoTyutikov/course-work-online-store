@@ -14,18 +14,20 @@ import java.util.Optional;
 public class ClientsService {
     private final ClientsRepository clientsRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
-    public ClientsService(ClientsRepository clientsRepository, PasswordEncoder passwordEncoder) {
+    public ClientsService(ClientsRepository clientsRepository, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.clientsRepository = clientsRepository;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
     public List<ClientsEntity> findAll() {
         return clientsRepository.findAll();
     }
 
-    public ClientsEntity findById(Integer id) {
-        return clientsRepository.findById(id).orElseThrow();
+    public Optional<ClientsEntity> findById(Integer id) {
+        return clientsRepository.findById(id);
     }
 
     public Integer save(ClientsEntity clientsEntity) {
@@ -47,29 +49,40 @@ public class ClientsService {
 //        System.out.println(clientLogin);
         return clientsRepository.findByClientLogin(clientLogin);
     }
-
+    public void updateClientActivatedStatus(int clientId, Integer activated) {
+        ClientsEntity client = clientsRepository.findById(clientId).get();
+        client.setActivated(activated);
+        clientsRepository.save(client);
+    }
     public String registerNewUser(@RequestBody ClientsDTO clientsDTO) {
-        ClientsEntity client = new ClientsEntity();
-        client.setClientPhone(clientsDTO.getClientPhone());
-        client.setClientLogin(clientsDTO.getClientLogin());
-        client.setClientFname(clientsDTO.getClientFname());
-        client.setClientLname(clientsDTO.getClientLname());
-        client.setClientEmail(clientsDTO.getClientEmail());
-        client.setClientPassword(passwordEncoder.encode(clientsDTO.getClientPassword()));
-        client.setClientIndex(clientsDTO.getClientIndex());
-        client.setClientCity(clientsDTO.getClientCity());
-        client.setClientAddress(clientsDTO.getClientAddress());
-        client.setUserRole(clientsDTO.getUserRole());
-//        clientsRepository.save(client);
-        int exists = this.save(client);
-        if (exists == -1)
-            return "User With this login exists";
-        return "redirect:/";
+        if(this.findClientIdByClientLogin(clientsDTO.getClientLogin()).isEmpty()) {
+            ClientsEntity client = new ClientsEntity();
+            client.setClientPhone(clientsDTO.getClientPhone());
+            client.setClientLogin(clientsDTO.getClientLogin());
+            client.setClientFname(clientsDTO.getClientFname());
+            client.setClientLname(clientsDTO.getClientLname());
+            client.setClientEmail(clientsDTO.getClientEmail());
+            client.setClientPassword(passwordEncoder.encode(clientsDTO.getClientPassword()));
+            client.setClientIndex(clientsDTO.getClientIndex());
+            client.setClientCity(clientsDTO.getClientCity());
+            client.setClientAddress(clientsDTO.getClientAddress());
+            client.setUserRole(clientsDTO.getUserRole());
+            client.setActivated(0);
+            this.save(client);
+//            int exists = this.save(client);
+//            if (exists == -1)
+
+            String to = client.getClientEmail();
+            String subject = "Welcome!";
+            String body = "Please confirm your mail by clicking on the link\n" + "http://localhost:8080/user/activate/" + client.getClientId();
+            emailService.sendEmail(to, subject, body);
+            return "redirect:/login";
+        }
+        return "User With this login exists";
     }
 
     public Optional<ClientsEntity> findClientIdByClientLogin(String clientLogin) {
         return clientsRepository.findClientIdByClientLogin(clientLogin);
     }
-
 
 }

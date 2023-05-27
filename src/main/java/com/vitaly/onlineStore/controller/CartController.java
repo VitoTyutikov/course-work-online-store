@@ -36,6 +36,7 @@ public class CartController {
     @PreAuthorize(value = "hasAnyRole('ADMIN','CLIENT','MANAGER')")
     @GetMapping
     public String getUserCart(Authentication authentication, Model model) {
+
         Optional<ClientsEntity> client = clientsService.findByClientLogin(authentication.getName());
         List<CartEntity> cartItems = cartService.findByClientId(client.get().getClientId());
         model.addAttribute("cartItems", cartItems);

@@ -44,6 +44,9 @@ public class ClientsEntity {
     @Basic
     @Column(name = "client_address")
     private String clientAddress;
+    @Basic
+    @Column
+    private Integer activated;
 
     @Basic
     @Column(name = "user_role", nullable = false)

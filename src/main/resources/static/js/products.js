@@ -76,7 +76,7 @@ function createProductCard(product) {
 
     const manufacturer = document.createElement('p');
     manufacturer.className = 'card-text';
-    manufacturer.textContent = `Manufacturer: ${product.manufacturerName}`;
+    manufacturer.textContent = `Manufacturer: ${product.manufacturersByManufacturerId.manufacturerName}`;
     cardBody.appendChild(manufacturer);
 
     const category = document.createElement('p');

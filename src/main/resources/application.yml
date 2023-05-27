@@ -9,3 +9,17 @@ spring:
       ddl-auto: validate
 
     show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: kazanuniversityvitalytyutikov@gmail.com
+    password: skdifgnizjcepkek
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true

@@ -1,7 +1,9 @@
 package com.vitaly.onlineStore;
 
 import com.vitaly.onlineStore.service.ClientsService;
+import com.vitaly.onlineStore.service.EmailService;
 import com.vitaly.onlineStore.service.ReviewsService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,9 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 public class OnlineStoreApplication {
     private final ReviewsService reviewsService;
-
-    public OnlineStoreApplication(ReviewsService reviewsService) {
+    private final EmailService emailService;
+    public OnlineStoreApplication(ReviewsService reviewsService, EmailService emailService) {
         this.reviewsService = reviewsService;
+        this.emailService = emailService;
     }
 
     private ClientsService clientsService;
@@ -20,6 +23,16 @@ public class OnlineStoreApplication {
     public static void main(String[] args) {
         SpringApplication.run(OnlineStoreApplication.class, args);
     }
+
+//    @PostConstruct
+//    public void init(){
+//        String to = "dbnf11dbnf@mail.ru";
+//        String subject = "Привет от Spring Mail!";
+//        String body = "Привет, это письмо отправлено из Spring Mail.";
+//        emailService.sendEmail(to, subject, body);
+//
+//    }
+
 
 //    @PostConstruct
 //    public void init() {

@@ -49,7 +49,12 @@ CREATE TABLE online_shop.clients
     CHECK (char_length(client_login) >= 2),
     CHECK (char_length(client_password) >= 5)
 );
+ALTER TABLE online_shop.clients
+    ADD COLUMN activated INTEGER DEFAULT 1;
 
+-- SELECT * FROM online_shop.clients
+ALTER TABLE online_shop.clients
+    ALTER COLUMN activated SET DEFAULT 0;
 CREATE TABLE online_shop.orders
 (
     order_id     SERIAL PRIMARY KEY,

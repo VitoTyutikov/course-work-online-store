@@ -49,4 +49,16 @@ public class ClientsController {
         clientsService.deleteById(id);
     }
 
+
+    @RequestMapping(value = "/activate/{id}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String activateProdfile(@PathVariable Integer id) {
+        Optional<ClientsEntity> client;
+        if ((client = clientsService.findById(id)).isPresent()) {
+//            client.get().setActivated(1);
+            clientsService.updateClientActivatedStatus(client.get().getClientId(), 1);
+            return "redirect:http://localhost:8080";
+        }
+        return "redirect:http://localhost:8080/error.html";
+    }
+
 }
